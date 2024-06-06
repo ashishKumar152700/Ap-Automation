@@ -1,0 +1,1 @@
+<link rel="shortcut icon" href="/ap_automation/module/images/rsb_images_cleanup.png" type="image/x-icon">

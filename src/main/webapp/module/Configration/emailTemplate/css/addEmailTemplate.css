@@ -1,0 +1,43 @@
+.note-toolbar{
+    /* z-index: 0 !important; */
+}
+.form-group {
+    margin-bottom: 0.6rem;
+}
+
+label {
+    display: inline-block;
+    margin-bottom: .5rem;
+}
+
+.container-fluid {
+    padding: 0px !important;
+}
+
+.btn-outline-success {
+    border-color: #24537f;
+}
+
+.btn-outline-success:hover {
+    background-color: #24537f;
+}
+
+.col-form-label {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.btn-success {
+    border: 1px solid #24537f !important;
+    background-color: #24537f !important;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #24537f !important;
+    border-top-color: #24537f !important;
+}
+
+.nav-tabs .nav-link {
+    border-top-width: 5px;
+}
