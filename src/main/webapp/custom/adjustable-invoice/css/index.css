@@ -1,0 +1,63 @@
+
+  .upload-image {
+    /* border: 1px solid black ; */
+    /* padding: 20px;   */
+    /* height:98vh;  */
+    width: 100vh;
+    
+    /* Use box-sizing so that element's outerwidth will match width property */
+    box-sizing: border-box;
+    
+    /* Allow box to grow and shrink, and ensure they are all equally sized */
+    flex: 1 1 auto;
+    user-select: none;
+    /* overflow: auto; */
+    /* overflow-x: hidden; */
+    /* flex-wrap: wrap; */
+  }
+  
+  .handler {
+    padding: 0;
+    flex: 0 0 auto;
+    width: 30px;
+    z-index: 1;
+    background-color: #F3F3F4 !important;
+  }
+  
+  .handler::before {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 100%;
+    background: #24537f !important;
+    margin: 0 auto;
+    cursor: ew-resize;
+  }
+
+  #canvas1{
+  height: 100% ;
+  width: 100%;
+  /* overflow: auto;
+  overflow-x: scroll; */
+  
+  }
+
+
+  /* for responsiveness */
+ /* @media screen and (max-width: 600px) {
+    .handler{
+      display: none;
+    }
+    .container-fluid{
+      flex-direction: column;
+    } */
+    /* .box{
+      height: auto;
+      width: fit-content;
+    }
+    #details{
+      position: relative;
+      z-index: 1;
+    }
+  } */
+

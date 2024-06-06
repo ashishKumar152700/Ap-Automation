@@ -1,0 +1,69 @@
+   i{
+        display: inline !important;
+    }
+    .navbar-static-side{
+        color: #a7b1c2;
+    }
+
+    .btn-outline-success {
+        color: #24537f !important;
+        border-color: #24537f !important;
+    }
+    .btn-outline-success:hover {
+        color: #ffffff !important;
+    }
+    .btn{
+        z-index: 0 !important;
+    }
+    video{
+        width: 155px !important;
+        height: 50px !important;
+        background-position: center !important;
+        object-fit: cover;
+        background-color: #f3f3f4 !important;
+        mix-blend-mode: multiply !important;
+    }
+   
+
+    /* .labelling{
+        margin-left: 14px !important;
+    }
+    .form-control {
+        margin-left: 10px !important;
+
+    }
+    #errorText{
+        margin-left: 10px !important;
+    }
+    */
+    #show , #show1{
+        padding-bottom: 4px !important;
+        border-radius: 0px;
+    }
+
+    .label-success{
+        background-color: #046307 !important;
+    }
+    .label-warningg{
+        background-color: #D2691E !important;
+        color: #ffffff;
+    }
+    .label-infoo{
+        background-color: #4B0082 !important;
+        color: #ffffff;
+    }
+
+    .slimScrollBar{
+        /* display: block !important; */
+        background-color: rgb(26, 223, 180) !important;
+        opacity: 0.8 !important;
+    }
+
+    #side-menu:hover{
+
+        .slimScrollBar{
+            display: block !important;
+            transition: 0.3s all;
+        }
+
+    }

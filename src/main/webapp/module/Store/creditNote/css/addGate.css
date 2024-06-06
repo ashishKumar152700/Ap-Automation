@@ -1,0 +1,6 @@
+.card{
+    flex-direction: row !important;
+}
+.gate_number{
+    padding-top:11px ;
+}
