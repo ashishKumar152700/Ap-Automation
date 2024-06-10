@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/ap_automation/module/Basic/css/style.css" />
+<link rel="stylesheet" href="/module/Basic/css/style.css" />
 <!-- <link rel="stylesheet" href="../../../custom/dynamic-menu/style.css"> -->
 
 <div class="modal inmodal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -77,7 +77,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
 
         <video id="video" autoplay loop muted>
-          <source src="/ap_automation/module/images/rsb_logo_video.mp4" type="video/mp4">
+          <source src="/module/images/rsb_logo_video.mp4" type="video/mp4">
         </video>
     </div>
    
@@ -116,9 +116,9 @@
     </ul>
   </nav>
   <!-- <script src="../../../custom/dynamic-menu/jquery.menu.js"></script> -->
-  <script src="/ap_automation/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-  <script src="/ap_automation/module/Configration/js/globalConfig.js"></script>
-  <script src="/ap_automation/module/Basic/js/jquery.menu.js"></script>
+  <script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="/module/Configration/js/globalConfig.js"></script>
+  <script src="/module/Basic/js/jquery.menu.js"></script>
 
   <script>
 

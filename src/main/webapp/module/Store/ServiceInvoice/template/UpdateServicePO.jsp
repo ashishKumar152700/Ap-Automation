@@ -2292,11 +2292,12 @@
                                 <input type="button" id="submit_invoice"  class="btn col-sm-12 btn-success" value="Submit">
                             </div>
                             <div class="container px-1">
-                                <input type="button" id="back_invoice" class="btn col-sm-12 btn-danger" value="Back">
-                            </div>
-                            <div class="container px-1">
                                 <input type="button" id="reject_invoice" class="btn col-sm-12 btn-danger" value="Reject">
                             </div>
+                            <div class="container px-1">
+                                <input type="button" id="back_invoice" class="btn col-sm-12 btn-danger" value="Back">
+                            </div>
+                         
                         
 
                 </div>

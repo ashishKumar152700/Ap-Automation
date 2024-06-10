@@ -21,12 +21,52 @@ $(document).ready(() => {
     let object_put = object;
     let details = object_put.details;
     let unit_rate_tolerance = 0.01;
+    let total_Line_item_weight=0
 
     console.log("details : ", details);
 
 
+
+      for(let i=0;i<details.length;i++){
+        if(!isNaN(details[i].quantity) &&  details[i].quantity != null ){ 
+          
+          total_Line_item_weight += parseFloat(details[i].quantity);  
+        }
+      }
+
+
+    $("#weight").change(()=>{
+      let weight = $("#weight").val()
+      if(weight > total_Line_item_weight )
+        {
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: "btn btn-success",
+            },
+            buttonsStyling: false,
+          });
+          
+          swalWithBootstrapButtons.fire({
+            // title: "Error Message",
+            text: `Greater Than Actual Quantity`,
+            icon: "warning",
+            confirmButtonText: "OK",
+            reverseButtons: true,
+          });
+          var inputElement = document.getElementById('weight');
+          inputElement.style.border = '1px solid red';
+        }
+        else{
+          var inputElement = document.getElementById('weight');
+          inputElement.style.border = '';
+
+          
+        }
+
+    })
     
     
+   
   
 
     var convertedFile;
@@ -2014,6 +2054,33 @@ $("#po_no_selected_search").click(()=>{
       e.preventDefault();
       // var code = 200;
       // var to_email = [];
+      let weight = $("#weight").val()
+
+      if(weight > total_Line_item_weight )
+        {
+          const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+              confirmButton: "btn btn-success",
+            },
+            buttonsStyling: false,
+          });
+          
+          swalWithBootstrapButtons.fire({
+            title: "Error Message",
+            text: `Greater Than Actual Quantity`,
+            icon: "warning",
+            confirmButtonText: "OK",
+            reverseButtons: true,
+          });
+          var inputElement = document.getElementById('weight');
+          inputElement.style.border = '1px solid red';
+          return;
+          }
+          else{
+            var inputElement = document.getElementById('weight');
+            inputElement.style.border = '';
+            
+          }
       
       let dynamic_table_item;
       

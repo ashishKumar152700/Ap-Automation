@@ -220,9 +220,9 @@
                                 </div>
                                 <div class="form-group">
                                   <label>Mobile No.*</label>
-                                  <input type="tel" required pattern="[0-9]{10}" id="mobile_number"
+                                  <input type="tel"  pattern="[0-9]{10}" id="mobile_number"
                                     placeholder="Enter 10-Digit Mobile No." class="form-control" maxlength="10"
-                                    minlength="10">
+                                    minlength="10" required>
                                   <small class="text-danger" id="mobile_number_error" style="display: none;">Please
                                     enter a 10-digit mobile number.</small>
                                 </div>
@@ -274,11 +274,11 @@
                                 <select name="roles" id="roles"></select>
                               </div>
                               <br>
-
+<!-- 
                               <div class="form-check form-switch" >
                                 <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked> &nbsp;
                                 <label class="form-check-label" for="flexSwitchCheckChecked" style="font-weight: bold;" > Active User</label>
-                              </div>
+                              </div> -->
                               
                               
 
@@ -295,7 +295,7 @@
 
                           <div class="col-11 d-flex justify-content-end">
                             <input type="button" class="btn btn-outline-success prev" value="Previous">&nbsp;&nbsp;
-                            <input type="button" class="btn btn-outline-success last" value="Next">
+                            <!-- <input type="button" class="btn btn-outline-success last" value="Next"> -->
                           </div>
 
 
