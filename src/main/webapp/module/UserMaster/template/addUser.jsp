@@ -247,13 +247,13 @@
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <br>    
+                                                <!-- <br>    
                                                 <div class="col-12 my-2">
                                                     <div class="form-check form-switch" >
                                                         <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked> &nbsp;
                                                         <label class="form-check-label" for="flexSwitchCheckChecked" style="font-weight: bold;" > Active User</label>
                                                       </div>
-                                                </div>
+                                                </div> -->
                                             </div>
 
                                             <!-- <div class="row">

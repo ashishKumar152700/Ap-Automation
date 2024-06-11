@@ -3,6 +3,10 @@ $(document).ready(() => {
 
 
   $(window).load(()=>{
+
+
+    // let vendor_invoice_tab=document.getElementById('vendor_invoice_tab').style.display('none')
+
     function clearCache() {
       // Get the current URL.
       const url = window.location.href;
@@ -343,6 +347,10 @@ $(document).ready(() => {
                 if($("#vendor_code").val() != ""){
                   if (totalPdf_page==1) {
                     $("#rescan").trigger("click")
+                    document.getElementById('vendor_invoice_tab').classList.remove('d-none');
+
+
+
                     $("#loader_rescan").addClass("ibox-content")
                     $("#loader_rescan").addClass("sk-loading")
                     $("#spin_rescan").removeClass("d-none")
@@ -358,6 +366,9 @@ $(document).ready(() => {
                   {
                     if (totalPdf_page == 1) {
                       $("#rescan").trigger("click")
+                      document.getElementById('vendor_invoice_tab').classList.remove('d-none');
+
+
                       $("#loader_rescan").addClass("ibox-content")
                       $("#loader_rescan").addClass("sk-loading")
                       $("#spin_rescan").removeClass("d-none")
@@ -476,7 +487,8 @@ $(document).ready(() => {
         
                     <li><a class="nav-link active" data-toggle="tab" href="#tab-1">OCR Data</a></li>
         
-                    <li><a class="nav-link" data-toggle="tab" href="#tab-2">Vendor Invoice</a></li>
+                    <li><a class="nav-link d-none" data-toggle="tab" 
+                    id="vendor_invoice_tab" href="#tab-2">Vendor Invoice</a></li>
         
                 </ul>
         
@@ -950,7 +962,11 @@ $(document).ready(() => {
     console.log("NO invoice number");
   }
 
+  object.details.sort((a, b) => a.s_no - b.s_no);
+
+  
   for (let i = 0; i < object.details.length; i++) {
+    console.log(typeof(object.details[i].s_no),'------------------------------');
 
     $("#tab_logic_body").append(`<tr>
   
@@ -1464,6 +1480,8 @@ $(document).ready(() => {
 
       if (totalPdf_page == 1) {
         $("#rescan").trigger("click")
+        document.getElementById('vendor_invoice_tab').classList.remove('d-none');
+
         $("#loader_rescan").addClass("ibox-content")
         $("#loader_rescan").addClass("sk-loading")
         $("#spin_rescan").removeClass("d-none")

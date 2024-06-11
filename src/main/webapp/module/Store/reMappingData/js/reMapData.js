@@ -7,6 +7,9 @@ $(document).ready(() => {
   let temp_invoice_date = req_body.invoice_date;
 // Create a temporary copy of the original request body
   const temp_req_body = { ...req_body };
+  let total_weight=0
+  let details_body=req_body.details
+
 
 
 
@@ -86,7 +89,7 @@ $("#tab_logic_body").on("click" , ".delete_rowId", function(){
 
   console.log("row id" , rowId != "");
 
-        if(rowId != ""){
+        if(rowId != ""){``
 
             swal({
               title: "",
@@ -121,6 +124,8 @@ $("#tab_logic_body").on("click" , ".delete_rowId", function(){
                     if(xhr.status ==  200)
                     {
                       swal( "","Successfully Updated","success")
+
+                      req_body.details = req_body.details.filter((value)=> value.id != rowId)
                       $(deleteThis).parent().parent().remove()
                     }
                     else{
@@ -317,8 +322,29 @@ $("#tab_logic_body tr").each(function (index) {
     }
 
 });
+
+ 
+
 console.log('req_body before date change---->' , req_body);
-console.log('remap data ---->' , $remap_arr);
+
+
+
+// for(let i=0;i<details_body.length;i++){
+//   if(!isNaN(details_body[i].quantity) &&  details_body[i].quantity != null ){ 
+    
+//     total_weight += parseFloat(details_body[i].quantity);  
+//   }
+// }
+
+
+// console.log(total_weight,'req_bodyreq_body');
+
+
+
+
+// console.log('remap data ---->' , $remap_arr);
+
+// return
 
 let fd_data =  new FormData()
 
@@ -382,28 +408,28 @@ if (temp_invoice_date != req_body.invoice_date) {
                         swal( "","Successfully Updated","success").then(() => {
                   
                           if(req_body.status.code == 100)
-                          {
-                            window.open(`../../../GateEntry/gate/template/gate.jsp`, "_self")
-                          }
-                          else if(req_body.status.code == 150)
-                          {
-                            window.open(`../../../GateEntry/Unloading/template/exception.jsp`, "_self")
-                          }
-                          else if(req_body.status.code == 200)
-                          {
-                            if(req_body.transactionType == "Service_PO")
                             {
-                              window.open(`../../ServiceInvoice/template/ServicePO.jsp`, "_self")
+                              window.open(`../../../GateEntry/gate/template/updateGate2.jsp`, "_self")
                             }
-                            else{
-                              window.open(`../../invoice/template/invoice.jsp`, "_self")
+                            else if(req_body.status.code == 150)
+                            {
+                              window.open(`../../../GateEntry/Unloading/template/exceptionHandle.jsp`, "_self")
                             }
-                          } 
-                          else if(req_body.status.code == 1000)
-                          {
-                            window.open(`../../ExceptionHandling/template/exception.jsp`, "_self")
-                          }
-                  
+                            else if(req_body.status.code == 200)
+                            {
+                              if(req_body.transactionType == "Service_PO")
+                              {
+                                window.open(`../../ServiceInvoice/template/UpdateServicePO.jsp`, "_self")
+                              }
+                              else{
+                                window.open(`../../invoice/template/addGateInvoice.jsp`, "_self")
+                              }
+                            } 
+                            else if(req_body.status.code == 1000)
+                            {
+          
+                              window.open(`../../ExceptionHandling/template/exceptionHandle.jsp`, "_self")
+                            }
                         })
                       }},
                       error: function(err){
@@ -462,36 +488,38 @@ else{
             success: function (data, status, xhr) {
               console.log("xhr :", xhr);
                 if (xhr.status == 200) {
-                    console.log(data);
+                    console.log(data,"#######################################################");
           
           
                 $("#loader").removeClass("ibox-content")
                 $("#loader").removeClass("sk-loading")
                 $("#sk-spinner").addClass("d-none")
           
+                sessionStorage.setItem('object', JSON.stringify(data.data));
                 swal( "","Successfully Updated","success").then(() => {
           
                   if(req_body.status.code == 100)
                   {
-                    window.open(`../../../GateEntry/gate/template/gate.jsp`, "_self")
+                    window.open(`../../../GateEntry/gate/template/updateGate2.jsp`, "_self")
                   }
                   else if(req_body.status.code == 150)
                   {
-                    window.open(`../../../GateEntry/Unloading/template/exception.jsp`, "_self")
+                    window.open(`../../../GateEntry/Unloading/template/exceptionHandle.jsp`, "_self")
                   }
                   else if(req_body.status.code == 200)
                   {
                     if(req_body.transactionType == "Service_PO")
                     {
-                      window.open(`../../ServiceInvoice/template/ServicePO.jsp`, "_self")
+                      window.open(`../../ServiceInvoice/template/UpdateServicePO.jsp`, "_self")
                     }
                     else{
-                      window.open(`../../invoice/template/invoice.jsp`, "_self")
+                      window.open(`../../invoice/template/addGateInvoice.jsp`, "_self")
                     }
                   } 
                   else if(req_body.status.code == 1000)
                   {
-                    window.open(`../../ExceptionHandling/template/exception.jsp`, "_self")
+
+                    window.open(`../../ExceptionHandling/template/exceptionHandle.jsp`, "_self")
                   }
           
                 })
@@ -518,7 +546,6 @@ else{
   })
 }
 
-console.log('req_body after date change---->' , req_body);
 
 
 
@@ -536,26 +563,27 @@ console.log('req_body after date change---->' , req_body);
   $("#back_invoice").click(() => {
 
     if(req_body.status.code == 100)
-    {
-      window.open(`../../../GateEntry/gate/template/gate.jsp`, "_self")
-    }
-    else if(req_body.status.code == 150)
-    {
-      window.open(`../../../GateEntry/Unloading/template/exception.jsp`, "_self")
-    }
-    else if(req_body.status.code == 200)
-    {
-      if(req_body.transactionType == "Service_PO")
       {
-        window.open(`../../ServiceInvoice/template/ServicePO.jsp`, "_self")
+        window.open(`../../../GateEntry/gate/template/updateGate2.jsp`, "_self")
       }
-      else{
-        window.open(`../../invoice/template/invoice.jsp`, "_self")
+      else if(req_body.status.code == 150)
+      {
+        window.open(`../../../GateEntry/Unloading/template/exceptionHandle.jsp`, "_self")
       }
-    } 
-    else if(req_body.status.code == 1000)
-    {
-      window.open(`../../ExceptionHandling/template/exception.jsp`, "_self")
-    } 
+      else if(req_body.status.code == 200)
+      {
+        if(req_body.transactionType == "Service_PO")
+        {
+          window.open(`../../ServiceInvoice/template/UpdateServicePO.jsp`, "_self")
+        }
+        else{
+          window.open(`../../invoice/template/addGateInvoice.jsp`, "_self")
+        }
+      } 
+      else if(req_body.status.code == 1000)
+      {
+
+        window.open(`../../ExceptionHandling/template/exceptionHandle.jsp`, "_self")
+      }
   });
 });

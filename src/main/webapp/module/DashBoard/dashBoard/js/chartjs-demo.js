@@ -198,7 +198,7 @@ $("#search_invoices").click(()=>{
                               },
                               
                             },
-                            colors : ["#079992", "#f0932b","#7ed6df","#5C4033","#b8e994" , "#dd8e75" , "#f64941" , "#f64941"],
+                            colors : ["#7ed6df", "#D0F5BE","#FAE392","#20c997","#f8ac5975" , "#FFEADD" , "#E59866" , "#95A5A6"],
                             legend: {
                                 fontSize : "10px",
                                 markers: {

@@ -76,6 +76,7 @@ $(document).ready(function () {
 		<td><input type="text" readonly class="form-control input_size item_no text-center" id="details_status"></td>
 		<td><input type="text" readonly class="form-control input_size invoice_no_grn text-center" id="details_status"></td>
 		<td><input type="text" readonly class="form-control input_size glc text-center" id="details_status"></td>
+		<td><input type="text" readonly class="form-control input_size gl_date text-center" id="details_status"></td>
 		<td><input type="text" readonly class="form-control input_size quantity_recieved text-right" id="details_status"></td>
 		<td><input type="text" readonly class="form-control input_size order_no text-left" id="line_num"></td>
 		<td><input type="text" id="hsn_code" readonly class="form-control input_size amount_open text-right"></td>

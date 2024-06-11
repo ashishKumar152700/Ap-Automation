@@ -1113,7 +1113,7 @@
                                               <div class="form-group">
                                                 <label><b>Weight / Quantity*</b></label>
                                                 <input
-                                                  type="text"
+                                                  type="number"
                                                   required=""
                                                   maxlength="10"
                                                   id="weight"

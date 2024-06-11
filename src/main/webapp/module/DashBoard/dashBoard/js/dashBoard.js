@@ -305,7 +305,7 @@ $(document).ready(function () {
                            
                                 <div class="flexCenter">
                                     <h5 class="no-margins">Total</h5>
-                                    <div class="stat-percent font-bold text-${temp[key]}">${item.total} <i class="fa fa-bolt"></i></div>
+                                    <div class="stat-percent font-bold text-primary">${item.total} <i class="fa fa-bolt"></i></div>
                                 </div>
                             </div>
                         </div>
