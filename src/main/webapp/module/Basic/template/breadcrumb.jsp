@@ -9,7 +9,7 @@
     <h2 id="pagename1" class="mb-0 mt-2"></h2>
     <ul class="itemss breadcrumb">
       <li class="list-item breadcrumb-item">
-        <a href="/module/DashBoard/dashBoard/template/dashBoard.jsp">Home</a>
+        <a href="/ap_automation/module/DashBoard/dashBoard/template/dashBoard.jsp">Home</a>
       </li>
     </ul>
   </div>

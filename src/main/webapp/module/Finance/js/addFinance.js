@@ -10,6 +10,7 @@ $(document).ready(()=>{
 	var details = [];
 	var reciept_no = []
 	var Matched_item = [];
+	var Matched_line_no = [];
 	var obj_success;
 	let grid_details_append = []
 	let payload_voucher_number;
@@ -610,8 +611,10 @@ $("#contract_no").val(data.data[0].contract_number)
 $("#contract_date").val(data.data[0].contract_date)
 
 Matched_item.push(data.data[0].details.map((value)=> value.jdeItemCode))
+Matched_line_no.push(data.data[0].details.map((value)=> value.lineNumber))
 
 console.log("match" , Matched_item);
+console.log("match_line_number" , Matched_line_no);
 
 
 var gate_number = $(gate_numbers).html()
@@ -1996,8 +1999,9 @@ $.ajax ({
 				for(let i = 0 ; i < length_table ; i++)
 				{
 					console.log(Matched_item.flat(500).includes($(".po_item")[i]?.value));
+					console.log(Matched_line_no.flat(Infinity).includes($(".line_numm")[i]?.value));
 
-					if(Matched_item.flat(500).includes($(".po_item")[i]?.value))
+					if(Matched_item.flat(500).includes($(".po_item")[i]?.value) && Matched_line_no.flat(Infinity).includes($(".line_numm")[i]?.value))
 					{
 
 						console.log($("#table-body tr")[i]);
