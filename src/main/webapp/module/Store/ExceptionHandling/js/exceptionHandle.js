@@ -2202,6 +2202,35 @@ $("#po_no_selected_search").click(()=>{
                                   }
 
                                 
+                                  $.ajax({
+                                    url : `${[login[0].url]}/jderest/v2/dataservice/table/F43121?$field=F43121.AN8&$field=F43121.CNID&$filter=F43121.MATC EQ 1&$filter=F43121.AN8 EQ ${$("#vendor_code").val()}&$filter=F43121.CNID EQ ${$("#invoice_number").val()}&$filter=F43121.TRDJ GE 01042024`,
+                                    headers: {
+                                        "Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
+                                    },
+                                    success : function(res_daata,status,xhr)
+                                    {
+          
+                                      console.log(res_daata);
+          
+                                        if(res_daata.fs_DATABROWSE_F43121.data.gridData.summary.records > 0)
+                                        {
+          
+                                          $.errorMessage(`Duplicate Supplier Invoice`)
+          
+                                          $("#loader5").removeClass("ibox-content")
+                                          $("#loader5").removeClass("sk-loading")
+                                          $("#spin5").addClass("d-none")
+          
+                                          $("#loader_rem").removeClass("ibox-content");
+                                          $("#loader_rem").removeClass("sk-loading");
+                                          $("#spin_rem").addClass("d-none");
+          
+                                          
+          
+                                          // console.log(date +"  "+time );
+                                            
+                                        }
+                                        else{
 
                                       
 
@@ -2912,6 +2941,10 @@ $("#po_no_selected_search").click(()=>{
                                         }
                                       },
                                     });
+
+                                          }
+                                        }
+                                    })
 
                                  
                             }
