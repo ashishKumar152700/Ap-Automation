@@ -84,6 +84,14 @@
       overflow-x: hidden;
     }
 
+    .my-swal-icon {
+      font-size: 0.7em; /* Adjust the icon size */
+    }
+    .my-swal-icon .swal2-icon {
+      width: 1em; /* Adjust the width */
+      height: 1em; /* Adjust the height */
+    }
+
 
     .table {
       text-align: center;

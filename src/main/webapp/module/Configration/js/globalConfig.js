@@ -8,17 +8,17 @@ var menuDataDefined = JSON.parse(localStorage.getItem("menuData"));
 
 
 // #81 config  -- DV
-var urlDefined = "http://192.168.50.81:8080/ap_automation_backend/configmaster/configs";
-var emailTemplateUrl = `http://192.168.50.81:8080/ap_automation_backend/emailTemplate/emailTemplate`;
-var registerUrl = `http://192.168.50.81:8080/ap_automation_backend/register`;
-var emailConfig = `http://192.168.50.81:8080/ap_automation_backend/emailConfig/emailConfigs`;
+// var urlDefined = "http://192.168.50.81:8080/ap_automation_backend/configmaster/configs";
+// var emailTemplateUrl = `http://192.168.50.81:8080/ap_automation_backend/emailTemplate/emailTemplate`;
+// var registerUrl = `http://192.168.50.81:8080/ap_automation_backend/register`;
+// var emailConfig = `http://192.168.50.81:8080/ap_automation_backend/emailConfig/emailConfigs`;
 
 
 // #82 config -- PY
-// var urlDefined = "http://192.168.50.81:8082/ap_automation_backend/configmaster/configs";
-// var emailTemplateUrl = `http://192.168.50.81:8082/ap_automation_backend/emailTemplate/emailTemplate`;
-// var registerUrl = `http://192.168.50.81:8082/ap_automation_backend/register`;
-// var emailConfig = `http://192.168.50.81:8082/ap_automation_backend/emailConfig/emailConfigs`;
+var urlDefined = "http://192.168.50.81:8082/ap_automation_backend/configmaster/configs";
+var emailTemplateUrl = `http://192.168.50.81:8082/ap_automation_backend/emailTemplate/emailTemplate`;
+var registerUrl = `http://192.168.50.81:8082/ap_automation_backend/register`;
+var emailConfig = `http://192.168.50.81:8082/ap_automation_backend/emailConfig/emailConfigs`;
 
 
 // #82 config -- PD
@@ -34,8 +34,8 @@ $.testUrl = function () {
     async: false,
     success: function (resp, status, xhr) {
       resp.data.map((value) => {
-        if (value.env == "DV" && value.type == "JAVA" && value.url_active) {
-        // if (value.env == "PY" && value.type == "JAVA" && value.url_active) {
+        // if (value.env == "DV" && value.type == "JAVA" && value.url_active) {
+        if (value.env == "PY" && value.type == "JAVA" && value.url_active) {
         // if (value.env == "PD" && value.type == "JAVA" && value.url_active) {
           dataa.push(value);
         }
@@ -64,8 +64,8 @@ $.loginUrl = function () {
     async: false,
     success: function (resp) {
       resp.data.map((value) => {
-        if (value.env == "DV" && value.type == "JDE" && value.url_active) {
-        // if (value.env == "PY" && value.type == "JDE" && value.url_active) {
+        // if (value.env == "DV" && value.type == "JDE" && value.url_active) {
+        if (value.env == "PY" && value.type == "JDE" && value.url_active) {
           // if (value.env == "PD" && value.type == "JDE" && value.url_active) {
           dataa.push(value);
         }
@@ -90,8 +90,8 @@ $.visionUrl = function () {
     async: false,
     success: function (resp, status, xhr) {
       resp.data.map((value) => {
-        if (value.env == "DV" && value.type == "OCR" && value.url_active) {
-        // if (value.env == "PY" && value.type == "OCR" && value.url_active) {
+        // if (value.env == "DV" && value.type == "OCR" && value.url_active) {
+        if (value.env == "PY" && value.type == "OCR" && value.url_active) {
         // if (value.env == "PD" && value.type == "OCR" && value.url_active) {
           dataa.push(value);
         }
