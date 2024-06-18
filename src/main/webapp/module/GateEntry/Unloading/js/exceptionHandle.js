@@ -1387,7 +1387,7 @@ $("#submit_unloading").click((e) => {
                     if($("#deliveryChallanNumber").val() != "")
                     {
                       $.ajax({
-                        url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#deliveryChallanNumber").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${$("#gate_number").html()}`,
+                        url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#deliveryChallanNumber").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${$("#gate_number").html()}&business_unit=20100`,
                         type : "POST",
                         headers: {
                                   "Accept": "application/json",

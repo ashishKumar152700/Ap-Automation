@@ -3646,7 +3646,7 @@ $.ajax ({
                       if($("#dc_number_head").val() != "")
                         {
                         $.ajax({
-                            url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#dc_number_head").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${obj.gate_number}`,
+                            url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#dc_number_head").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${obj.gate_number}&business_unit=20100`,
                             type : "POST",
                             headers: {
                                     "Accept": "application/json",
