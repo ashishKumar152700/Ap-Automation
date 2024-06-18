@@ -28,17 +28,30 @@ $(document).ready(() => {
 
 
       for(let i=0;i<details.length;i++){
-        if(!isNaN(details[i].quantity) &&  details[i].quantity != null ){ 
+        if(!isNaN(details[i].quantity.replace(/[^\d.]/g, '')) &&  details[i].quantity != null &&  details[i].quantity != "" ){ 
           
-          total_Line_item_weight += parseFloat(details[i].quantity);  
+          total_Line_item_weight += parseFloat(details[i].quantity.replace(/[^\d.]/g, ''));  
         }
       }
 
 
     $("#weight").change(()=>{
       let weight = $("#weight").val()
-      if(weight > total_Line_item_weight )
+      console.log('weight ---->' ,weight);
+      if($("#weight").val() == "" || weight > total_Line_item_weight )
         {
+          let textValue;
+
+          if($("#weight").val() == ""){
+            textValue = "Weight/Quantity Can Not Be Empty"
+          }
+          else{
+            textValue = "Greater Than Actual Quantity"
+          }
+
+
+
+
           const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: "btn btn-success",
@@ -48,7 +61,7 @@ $(document).ready(() => {
           
           swalWithBootstrapButtons.fire({
             // title: "Error Message",
-            text: `Greater Than Actual Quantity`,
+            text: textValue,
             icon: "warning",
             confirmButtonText: "OK",
             reverseButtons: true,
@@ -2056,8 +2069,18 @@ $("#po_no_selected_search").click(()=>{
       // var to_email = [];
       let weight = $("#weight").val()
 
-      if(weight > total_Line_item_weight )
+      if($("#weight").val() == "" || weight > total_Line_item_weight )
         {
+
+        let textValue;
+
+          if($("#weight").val() == ""){
+            textValue = "Weight/Quantity Can Not Be Empty"
+          }
+          else{
+            textValue = "Greater Than Actual Quantity"
+          }
+
           const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
               confirmButton: "btn btn-success",
@@ -2067,7 +2090,7 @@ $("#po_no_selected_search").click(()=>{
           
           swalWithBootstrapButtons.fire({
             title: "Error Message",
-            text: `Greater Than Actual Quantity`,
+            text: textValue,
             icon: "warning",
             confirmButtonText: "OK",
             reverseButtons: true,
@@ -2521,13 +2544,12 @@ $("#po_no_selected_search").click(()=>{
             
                                                               $.errorMessage("PLease Remap The Unit Rate")
             
-                                                              $("#loader5").addClass("ibox-content")
-                                                              $("#loader5").addClass("sk-loading")
-                                                              $("#spin5").removeClass("d-none")
-
-                                                              $("#loader_rem").addClass("ibox-content");
-                                                              $("#loader_rem").addClass("sk-loading");
-                                                              $("#spin_rem").removeClass("d-none");
+                                                              $("#loader5").removeClass("ibox-content")
+                                                              $("#loader5").removeClass("sk-loading")
+                                                              $("#spin5").addClass("d-none")
+                                                              $("#loader_rem").removeClass("ibox-content");
+                                                              $("#loader_rem").removeClass("sk-loading");
+                                                              $("#spin_rem").addClass("d-none");
                                             
                                                               return;
                                                             }
@@ -2538,13 +2560,12 @@ $("#po_no_selected_search").click(()=>{
               
                                                                 $.errorMessage("PLease Remap The Item Code")
               
-                                                                $("#loader5").addClass("ibox-content")
-                                                                $("#loader5").addClass("sk-loading")
-                                                                $("#spin5").removeClass("d-none")
-
-                                                                $("#loader_rem").addClass("ibox-content");
-                                                                $("#loader_rem").addClass("sk-loading");
-                                                                $("#spin_rem").removeClass("d-none");
+                                                                $("#loader5").removeClass("ibox-content")
+                                                                $("#loader5").removeClass("sk-loading")
+                                                                $("#spin5").addClass("d-none")
+                                                                $("#loader_rem").removeClass("ibox-content");
+                                                                $("#loader_rem").removeClass("sk-loading");
+                                                                $("#spin_rem").addClass("d-none");
               
                                                                 return;
                                                               }
