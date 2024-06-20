@@ -549,7 +549,7 @@
                   
                       <input class="form-check-input" type="checkbox" id="override_taxable_value">
                       <label class="form-check-label" for="override_taxable_value">
-                          OverRide Taxable Value
+                        WorkAround On DuOM
                       </label>
                   </div>
 
