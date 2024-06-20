@@ -2087,6 +2087,9 @@ $("#po_no_selected_search").click(()=>{
       let shouldbreak = true
       objValue = 0;
 
+
+
+
      
 
 
@@ -2200,6 +2203,69 @@ $("#po_no_selected_search").click(()=>{
                                     $("#spin_rem").addClass("d-none");
                                     return;
                                   }
+
+                                  window.scrollTo({
+                                    top:  70,
+                                    behavior: 'smooth'
+                                  });
+
+
+                                  const swalWithBootstrapButtons = Swal.mixin({
+                                    customClass: {
+                                      icon: 'my-swal-icon',
+                                      confirmButton: "btn btn-sm btn-success mx-1",
+                                      cancelButton: "btn btn-sm btn-info mx-1",
+                                      denyButton : "btn btn-sm btn-danger mx-1",
+                                    },
+                                    buttonsStyling: false,
+                                  });
+                              
+                                  swalWithBootstrapButtons
+                                    .fire({
+                                      position: "top",
+                                      // title: "Please Re-Check The Below Details",
+                                      html: `<b>Re-Check The Below Details<br>Invoice Number :- ${$("#invoice_number").val()}<br>Invoice Date :- ${$("#invoice_date").val()}</b>`,
+                                      // text: `Invoice Number :- ${$("#invoice_number").val()}\n\nInvoice Date :- ${$("#invoice_date").val()}`,
+                                      icon: "warning",
+                                      showCancelButton: true,
+                                      showDenyButton: true,
+                                      confirmButtonText: "OK",
+                                      cancelButtonText: "Re-Map",
+                                      denyButtonText: "Back",
+                                      // reverseButtons: true,
+                                    })
+                                    .then((result) => {
+                                      if (result.isConfirmed) {
+
+                                        let today = new Date();
+                                        let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                                        let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
+
+                                        // console.log(date +"  "+time );
+
+                                        $.ajax({
+                                            url : `${[test[0].url]}/remark/add`,
+                                            type : 'POST',
+                                            data : JSON.stringify({
+
+                                                gate_number: $("#gate_number").html(),
+                                                remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
+                                                status  : 1000,
+                                                username  : $(".name")[1].innerText,
+                                                timestamp : `${date} ${time}` 
+                                            }),
+                                            headers: {
+                                                'Accept': 'application/json',
+                                                'Content-Type': 'application/json',
+                                                'Authorization': 'Bearer ' + token,
+                                            },
+                                            success : function(data,status,xhr)
+                                            {
+                                              console.log("remarks data :" ,data);
+                                            }
+                                          })
+                                                
+                                      
 
                                 
                                   $.ajax({
@@ -2945,6 +3011,31 @@ $("#po_no_selected_search").click(()=>{
                                           }
                                         }
                                     })
+
+
+                                  }
+                                  else if(result.isDismissed){
+
+                                    $("#remap_data").trigger("click");
+                                    
+                                    $("#loader5").removeClass("ibox-content")
+                                    $("#loader5").removeClass("sk-loading")
+                                    $("#spin5").addClass("d-none")
+                                    $("#loader_rem").removeClass("ibox-content");
+                                    $("#loader_rem").removeClass("sk-loading");
+                                    $("#spin_rem").addClass("d-none");
+                                    }
+                                  else {
+                                    $("#loader5").removeClass("ibox-content")
+                                    $("#loader5").removeClass("sk-loading")
+                                    $("#spin5").addClass("d-none")
+                                    $("#loader_rem").removeClass("ibox-content");
+                                    $("#loader_rem").removeClass("sk-loading");
+                                    $("#spin_rem").addClass("d-none");
+
+                                    console.log('value of result  ---->' ,result);
+                                 }
+                               });
 
                                  
                             }

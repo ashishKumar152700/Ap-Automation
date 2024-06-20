@@ -24,7 +24,9 @@
         mix-blend-mode: multiply !important;
     }
    
-
+    .swal2-container{
+        z-index: 3090 !important;
+    }
     /* .labelling{
         margin-left: 14px !important;
     }
