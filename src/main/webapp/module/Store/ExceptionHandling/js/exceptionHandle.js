@@ -2260,123 +2260,96 @@ $("#po_no_selected_search").click(()=>{
                                     .then(async(result) => {
                                       if (result.isConfirmed) {
 
-                                        let returnBol = false
+                                        // let returnBol = false
 
-                                        if($("#deliveryChallanNumber").val() != "")
-                                          {
-                                            await $.ajax({
-                                              url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#deliveryChallanNumber").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${$("#gate_number").html()}&business_unit=20100`,
-                                              type : "POST",
-                                              headers: {
-                                                        "Accept": "application/json",
-                                                        "Content-Type": "application/json",
-                                                        'Authorization': 'Bearer ' + token,
-                                                },
-                                              success :  function(data,status,xhr)
-                                              {
-                                                console.log("dc data : " , data);
-                                                if(xhr.status == 200)
-                                                {
-                                                  if(data.data == false)
-                                                  {
-                                                    $.errorMessage(`${data.message}`)
+                                        // if($("#deliveryChallanNumber").val() != "")
+                                        //   {
+                                        //     await $.ajax({
+                                        //       url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#deliveryChallanNumber").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${$("#gate_number").html()}&business_unit=20100`,
+                                        //       type : "POST",
+                                        //       headers: {
+                                        //                 "Accept": "application/json",
+                                        //                 "Content-Type": "application/json",
+                                        //                 'Authorization': 'Bearer ' + token,
+                                        //         },
+                                        //       success :  function(data,status,xhr)
+                                        //       {
+                                        //         console.log("dc data : " , data);
+                                        //         if(xhr.status == 200)
+                                        //         {
+                                        //           if(data.data == false)
+                                        //           {
+                                        //             $.errorMessage(`${data.message}`)
 
-                                                    $("#loader5").removeClass("ibox-content")
-                                                    $("#loader5").removeClass("sk-loading")
-                                                    $("#spin5").addClass("d-none")
+                                        //             $("#loader5").removeClass("ibox-content")
+                                        //             $("#loader5").removeClass("sk-loading")
+                                        //             $("#spin5").addClass("d-none")
                     
-                                                    $("#loader_rem").removeClass("ibox-content");
-                                                    $("#loader_rem").removeClass("sk-loading");
-                                                    $("#spin_rem").addClass("d-none");
-                                                    returnBol = true;
-                                                    return;
-                                                  }
-                                                  else{
+                                        //             $("#loader_rem").removeClass("ibox-content");
+                                        //             $("#loader_rem").removeClass("sk-loading");
+                                        //             $("#spin_rem").addClass("d-none");
+                                        //             returnBol = true;
+                                        //             return;
+                                        //           }
+                                        //           else{
 
-                                                    let today = new Date();
-                                                    let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
-                                                    let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
+                                        //             let today = new Date();
+                                        //             let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                                        //             let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 
-                                                    // console.log(date +"  "+time );
+                                        //             // console.log(date +"  "+time );
 
-                                                    $.ajax({
-                                                        url : `${[test[0].url]}/remark/add`,
-                                                        type : 'POST',
-                                                        data : JSON.stringify({
+                                        //             $.ajax({
+                                        //                 url : `${[test[0].url]}/remark/add`,
+                                        //                 type : 'POST',
+                                        //                 data : JSON.stringify({
 
-                                                            gate_number: $("#gate_number").html(),
-                                                            remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
-                                                            status  : 1000,
-                                                            username  : $(".name")[1].innerText,
-                                                            timestamp : `${date} ${time}` 
-                                                        }),
-                                                        headers: {
-                                                            'Accept': 'application/json',
-                                                            'Content-Type': 'application/json',
-                                                            'Authorization': 'Bearer ' + token,
-                                                        },
-                                                        success : function(data,status,xhr)
-                                                        {
-                                                          console.log("remarks data :" ,data);
-                                                        }
-                                                      })
-                                                  }
-                                                }
-                                                else{
+                                        //                     gate_number: $("#gate_number").html(),
+                                        //                     remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
+                                        //                     status  : 1000,
+                                        //                     username  : $(".name")[1].innerText,
+                                        //                     timestamp : `${date} ${time}` 
+                                        //                 }),
+                                        //                 headers: {
+                                        //                     'Accept': 'application/json',
+                                        //                     'Content-Type': 'application/json',
+                                        //                     'Authorization': 'Bearer ' + token,
+                                        //                 },
+                                        //                 success : function(data,status,xhr)
+                                        //                 {
+                                        //                   console.log("remarks data :" ,data);
+                                        //                 }
+                                        //               })
+                                        //           }
+                                        //         }
+                                        //         else{
                       
-                                                  $.errorMessage(xhr.responseJSON.message)
-                                                }
+                                        //           $.errorMessage(xhr.responseJSON.message)
+                                        //         }
                       
-                                              },
-                                              error : function(xhr)
-                                              {
-                                                console.log(xhr);
-                                                if(xhr.status == 498)
-                                                {
-                                                  $.tokenError()
-                                                }else{
-                                                  $.errorMessage(xhr.responseJSON.message)
-                                                }
+                                        //       },
+                                        //       error : function(xhr)
+                                        //       {
+                                        //         console.log(xhr);
+                                        //         if(xhr.status == 498)
+                                        //         {
+                                        //           $.tokenError()
+                                        //         }else{
+                                        //           $.errorMessage(xhr.responseJSON.message)
+                                        //         }
                       
-                                              }
-                                            })
-                                          }
-                                          else{
+                                        //       }
+                                        //     })
+                                        //   }
+                                          // else{
 
-                                            let today = new Date();
-                                            let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
-                                            let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
-
-                                            // console.log(date +"  "+time );
-
-                                            $.ajax({
-                                                url : `${[test[0].url]}/remark/add`,
-                                                type : 'POST',
-                                                data : JSON.stringify({
-
-                                                    gate_number: $("#gate_number").html(),
-                                                    remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
-                                                    status  : 1000,
-                                                    username  : $(".name")[1].innerText,
-                                                    timestamp : `${date} ${time}` 
-                                                }),
-                                                headers: {
-                                                    'Accept': 'application/json',
-                                                    'Content-Type': 'application/json',
-                                                    'Authorization': 'Bearer ' + token,
-                                                },
-                                                success : function(data,status,xhr)
-                                                {
-                                                  console.log("remarks data :" ,data);
-                                                }
-                                              })
-
-                                          }
+                                            
+                                          // }
 
                                         
-                                          console.log('returnBol ---->' ,returnBol);
+                                          // console.log('returnBol ---->' ,returnBol);
                                                
-                                          if(returnBol) return;
+                                          // if(returnBol) return;
                                       
 
                                 
@@ -3202,6 +3175,106 @@ $("#po_no_selected_search").click(()=>{
 
               if($("#storeId").val() != null)
               {
+
+              
+                     $.ajax({
+                      url : `${[test[0].url]}/gate/validate/wo?dcNumber=${$("#deliveryChallanNumber").val()}&supplier=${$("#vendor_code").val()}&gateNumber=${$("#gate_number").html()}&business_unit=20100`,
+                      type : "POST",
+                      headers: {
+                                "Accept": "application/json",
+                                "Content-Type": "application/json",
+                                'Authorization': 'Bearer ' + token,
+                        },
+                      success :  function(data,status,xhr)
+                      {
+                        console.log("dc data : " , data);
+                        if(xhr.status == 200)
+                        {
+                          if(data.data == false)
+                          {
+                            // $.errorMessage(`${data.message}`)
+
+                            let today = new Date();
+                            let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                            let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
+
+                            // console.log(date +"  "+time );
+
+                            $.ajax({
+                                url : `${[test[0].url]}/remark/add`,
+                                type : 'POST',
+                                data : JSON.stringify({
+
+                                    gate_number: $("#gate_number").html(),
+                                    remark : `${data.message}`,
+                                    status  : 1000,
+                                    username  : $(".name")[1].innerText,
+                                    timestamp : `${date} ${time}` 
+                                }),
+                                headers: {
+                                    'Accept': 'application/json',
+                                    'Content-Type': 'application/json',
+                                    'Authorization': 'Bearer ' + token,
+                                },
+                                success : function(data,status,xhr)
+                                {
+                                  console.log("remarks data :" ,data);
+                                }
+                              })
+                          }
+                        }
+                        else{
+
+                          $.errorMessage(xhr.responseJSON.message)
+                        }
+
+                      },
+                      error : function(xhr)
+                      {
+                        console.log(xhr);
+                        if(xhr.status == 498)
+                        {
+                          $.tokenError()
+                        }else{
+                          $.errorMessage(xhr.responseJSON.message)
+                        }
+
+                      }
+                    })
+                  
+
+                    let today_date = new Date();
+                    let date_today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                    let Curr_time = String(today_date.getHours()).padStart(2, '0')+':'+String(today_date.getMinutes()).padStart(2, '0')+':'+String(today_date.getSeconds()).padStart(2, '0');
+
+                    // console.log(date +"  "+time );
+
+                    $.ajax({
+                        url : `${[test[0].url]}/remark/add`,
+                        type : 'POST',
+                        data : JSON.stringify({
+
+                            gate_number: $("#gate_number").html(),
+                            remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
+                            status  : 1000,
+                            username  : $(".name")[1].innerText,
+                            timestamp : `${date_today} ${Curr_time}` 
+                        }),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + token,
+                        },
+                        success : function(data,status,xhr)
+                        {
+                          console.log("remarks data :" ,data);
+                        }
+                      })
+
+
+
+
+
 
 
                                 let today = new Date();
