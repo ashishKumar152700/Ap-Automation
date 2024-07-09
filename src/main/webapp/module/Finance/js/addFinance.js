@@ -2656,11 +2656,11 @@ $.ajax ({
 
  
 
-                    $("#loader4").addClass("sk-loading")
+                    $("#loader2").addClass("sk-loading")
 
-                    $("#loader4").addClass("ibox-content")
+                    $("#loader2").addClass("ibox-content")
 
-                    $("#spin4").removeClass("d-none")
+                    $("#spin2").removeClass("d-none")
 
  
 
@@ -2724,11 +2724,9 @@ $.ajax ({
 
                         $("#create_voucher").removeClass("invisible")
 
-                        $("#loader4").removeClass("sk-loading")
-
-                        $("#loader4").removeClass("ibox-content")
-
-                        $("#spin4").addClass("d-none")
+                        $("#loader2").removeClass("sk-loading")
+						$("#loader2").removeClass("ibox-content")
+						$("#spin2").addClass("d-none")
 
                   }
 
@@ -2736,12 +2734,9 @@ $.ajax ({
 
                     $.errorMessage("Invaild GRN")
 
-                    $("#loader4").removeClass("sk-loading")
-
-                    $("#loader4").removeClass("ibox-content")
-
-                    $("#spin4").addClass("d-none")
-
+					$("#loader2").removeClass("sk-loading")
+					$("#loader2").removeClass("ibox-content")
+					$("#spin2").addClass("d-none")
                 }
 
                  
@@ -3242,9 +3237,9 @@ $.ajax ({
 						// { "order_number": "23006790", "order_type": "OF", "order_company": "00201", "branch_plant": "20100", "supplier_number": "40008059", "invoice_number": "IN0411", "invoice_date": "04/11/2023", "gross_amount": "", "currency_code": "INR", "gl_date": "04/11/2023", "p0411_version": "IAL000021" }
 		
 						console.log("row obj :  ",row_obj);
-						$("#loader4").addClass("sk-loading")
-						$("#loader4").addClass("ibox-content")
-						$("#spin4").removeClass("d-none")
+						$("#loader2").addClass("sk-loading")
+						$("#loader2").addClass("ibox-content")
+						$("#spin2").removeClass("d-none")
 		
 					
 						$.ajax({
@@ -3298,7 +3293,7 @@ $.ajax ({
 										{
 										  console.log("remarks data :" ,data);
 										  let today = new Date();
-										  let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
+										  let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
 										  let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 			  
 										  $.ajax({
@@ -3453,9 +3448,9 @@ $.ajax ({
 										reverseButtons: true
 									}).then(()=>{
 										$("#create_voucher").removeClass("invisible")
-										$("#loader4").removeClass("sk-loading")
-										$("#loader4").removeClass("ibox-content")
-										$("#spin4").addClass("d-none")
+										$("#loader2").removeClass("sk-loading")
+										$("#loader2").removeClass("ibox-content")
+										$("#spin2").addClass("d-none")
 		
 										// Select the last tab
 										var $lastTab = $("ul.nav-tabs li:last-child a");
@@ -3506,10 +3501,10 @@ $.ajax ({
 								// }
 		
 								$("#create_voucher").removeClass("invisible")
-								$("#loader4").removeClass("sk-loading")
-								$("#loader4").removeClass("ibox-content")
-								$("#spin4").addClass("d-none")
-		
+								$("#loader2").removeClass("sk-loading")
+								$("#loader2").removeClass("ibox-content")
+								$("#spin2").addClass("d-none")
+
 							}
 							
 		
@@ -3812,9 +3807,9 @@ $.ajax ({
 									
 								},
 								error: function(xhr){
-									$("#loader4").removeClass("sk-loading")
-									$("#loader4").removeClass("ibox-content")
-									$("#spin4").addClass("d-none")
+									$("#loader2").removeClass("sk-loading")
+									$("#loader2").removeClass("ibox-content")
+									$("#spin2").addClass("d-none")
 									console.log(xhr);
 								},
 								complete : ()=>{
@@ -3823,9 +3818,9 @@ $.ajax ({
 									details = [];
 									data = [];
 									
-									$("#loader4").removeClass("sk-loading")
-									$("#loader4").removeClass("ibox-content")
-									$("#spin4").addClass("d-none")
+									$("#loader2").removeClass("sk-loading")
+									$("#loader2").removeClass("ibox-content")
+									$("#spin2").addClass("d-none")
 									$(".details_statuss").removeAttr("readonly", "readonly")
 									$("#Modal_details").removeClass("invisible")
 									
@@ -3864,7 +3859,7 @@ $.ajax ({
 
 						
 						let today = new Date();
-						let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
+						let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
 						let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 						// console.log(date +"  "+time );
 
@@ -4094,7 +4089,7 @@ $.ajax ({
 					if($("textarea").val().length != 0)
 					{
 						let today = new Date();
-						let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
+						let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
 						let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 
 						// console.log(date +"  "+time );
