@@ -3285,7 +3285,7 @@ $.ajax ({
 				
 											gate_number: $("#gate_number").html(),
 											remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
-											status  : 1000,
+											status  : 400,
 											username  : $(".name")[1].innerText,
 											timestamp : `${date_today} ${Curr_time}` 
 										}),

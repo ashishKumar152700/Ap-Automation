@@ -1434,16 +1434,16 @@ $("#submit_unloading").click((e) => {
                                   })
 
 
-                                  for(let i = 0 ; i < $(".scan_item").length ; i++)
-                                    {
-                                      for(let j = 0 ; j < object_put.details.length ; i++)
-                                        {
-                                          if(object_put.details[j].item_code == $(".scan_item")[i].value)
-                                            {
-                                                object_put.details[j].actualRecievedQuantity = $(".scan_actual_quantity")[i].value
-                                            }
-                                        }
-                                    }
+                                  // for(let i = 0 ; i < $(".scan_item").length ; i++)
+                                  //   {
+                                  //     for(let j = 0 ; j < object_put.details.length ; i++)
+                                  //       {
+                                  //         if(object_put.details[j].item_code == $(".scan_item")[i].value)
+                                  //           {
+                                  //               object_put.details[j].actualRecievedQuantity = $(".scan_actual_quantity")[i].value
+                                  //           }
+                                  //       }
+                                  //   }
 
 
                                     
