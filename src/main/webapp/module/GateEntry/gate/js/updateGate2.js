@@ -59,7 +59,7 @@ $(document).ready(() => {
   $.checkstatus(object.id, true);
   var details = [];
   var details_payload = [];
-  var rescan_counts = 0;
+  var rescan_counts = 0;  
   let invoice_date_formate;
   let ocrImage;
 

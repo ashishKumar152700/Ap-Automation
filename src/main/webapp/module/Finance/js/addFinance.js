@@ -2656,11 +2656,11 @@ $.ajax ({
 
  
 
-                    $("#loader4").addClass("sk-loading")
+                    $("#loader2").addClass("sk-loading")
 
-                    $("#loader4").addClass("ibox-content")
+                    $("#loader2").addClass("ibox-content")
 
-                    $("#spin4").removeClass("d-none")
+                    $("#spin2").removeClass("d-none")
 
  
 
@@ -2724,11 +2724,9 @@ $.ajax ({
 
                         $("#create_voucher").removeClass("invisible")
 
-                        $("#loader4").removeClass("sk-loading")
-
-                        $("#loader4").removeClass("ibox-content")
-
-                        $("#spin4").addClass("d-none")
+                        $("#loader2").removeClass("sk-loading")
+						$("#loader2").removeClass("ibox-content")
+						$("#spin2").addClass("d-none")
 
                   }
 
@@ -2736,12 +2734,9 @@ $.ajax ({
 
                     $.errorMessage("Invaild GRN")
 
-                    $("#loader4").removeClass("sk-loading")
-
-                    $("#loader4").removeClass("ibox-content")
-
-                    $("#spin4").addClass("d-none")
-
+					$("#loader2").removeClass("sk-loading")
+					$("#loader2").removeClass("ibox-content")
+					$("#spin2").addClass("d-none")
                 }
 
                  
@@ -3144,320 +3139,395 @@ $.ajax ({
 
 			$("#create_voucher").click(()=>{
 
-                let row_obj = [];
+            
 
-				if(obj.transactionType != "ServiceWithMaterial")
-				{
-					row_obj_body = {
-							gate_number: $("#gate_number").html(),
-							order_number: $("#purchase_order").val(),
-							order_type: $("#purchase_type").val(),
-							order_company: $("#company_code").val(),
-							supplier_number: $("#vendor_code").val(),
-							invoice_number: $("#invoice_noo_entry").val(),
-							invoice_date : $("#invoice_date").val().split("-").join("/") , 
-							gl_date : $("#gl_date").val().split("-").join("/"),
-							// gross_amount: $("#Total_Invoice_amount").val(),
-							currency_code: $("#curr_code").val(),
-							branch_plant: $("#business_unit").val(),
-							P0411_Version: "IAL000021"
-					}
-
-					row_obj.push(row_obj_body)
-				}
-				else{
-
-					uniqueArray = obj.details.reduce((acc, current) => {
-						// Check if there is already an object with the same po_number and po_type
-						const existingObject = acc.find(
-							(obj) =>
-								obj.po_number === current.po_number && obj.po_type === current.po_type
-						);
+				  const swalWithBootstrapButtons = Swal.mixin({
+					customClass: {
+					  icon: 'my-swal-icon',
+					  confirmButton: "btn btn-sm btn-success mx-1",
 					
-						// If not found, push the current object into the accumulator array
-						if (!existingObject) {
-							acc.push(current);
-						}
+					  denyButton : "btn btn-sm btn-danger mx-1",
+					},
+					buttonsStyling: false,
+				  });
+			  
+				  swalWithBootstrapButtons
+					.fire({
+					  position: "top",
+					  // title: "Please Re-Check The Below Details",
+					  html: `<b>Re-Check The Below Details<br>Invoice Number :- ${$("#invoice_number").val()}<br>Invoice Date :- ${$("#invoice_date").val()}</b>`,
+					  // text: `Invoice Number :- ${$("#invoice_number").val()}\n\nInvoice Date :- ${$("#invoice_date").val()}`,
+					  icon: "warning",
 					
-						return acc;
-					}, []);
-
-					uniqueArray.map((value)=>{
-
-						row_obj_body = {
-							gate_number: $("#gate_number").html(),
-							order_number: value.po_number,
-							order_type: value.po_type,
-							order_company: $("#company_code").val(),
-							supplier_number: $("#vendor_code").val(),
-							invoice_number: $("#invoice_noo_entry").val(),
-							invoice_date : $("#invoice_date").val().split("-").join("/") , 
-							gl_date : $("#gl_date").val().split("-").join("/"),
-							// gross_amount: $("#Total_Invoice_amount").val(),
-							currency_code: $("#curr_code").val(),
-							branch_plant: $("#business_unit").val(),
-							P0411_Version: "IAL000021"
-						}
-
-						
-						row_obj.push(row_obj_body);
+					  showDenyButton: true,
+					  confirmButtonText: "OK",
+					
+					  denyButtonText: "Back",
+					  // reverseButtons: true,
 					})
+					.then(async(result) => {
+					  if (result.isConfirmed) {
 
+						let row_obj = [];
 
-
-				}
-
-
-
-
-				// { "order_number": "23006790", "order_type": "OF", "order_company": "00201", "branch_plant": "20100", "supplier_number": "40008059", "invoice_number": "IN0411", "invoice_date": "04/11/2023", "gross_amount": "", "currency_code": "INR", "gl_date": "04/11/2023", "p0411_version": "IAL000021" }
-
-				console.log("row obj :  ",row_obj);
-				$("#loader4").addClass("sk-loading")
-				$("#loader4").addClass("ibox-content")
-				$("#spin4").removeClass("d-none")
-
-			
-				$.ajax({
-					url : `${[test[0].url]}/gate/voucher`,
-					type : 'POST',
-					data : JSON.stringify(row_obj),
-					headers: {
-						'Accept': 'application/json',
-						'Content-Type': 'application/json',
-						'Authorization': 'Bearer ' + token,
-					  },
-
-					success : function(data ,  status , xhr)
-					{
-						if(xhr.status == 200){
-
-							// try {
-							// 	// $(voucher_table).destroy()
-							// 	$("#voucher_body").empty();
-							// } catch (error) {
+						if(obj.transactionType != "ServiceWithMaterial")
+						{
+							row_obj_body = {
+									gate_number: $("#gate_number").html(),
+									order_number: $("#purchase_order").val(),
+									order_type: $("#purchase_type").val(),
+									order_company: $("#company_code").val(),
+									supplier_number: $("#vendor_code").val(),
+									invoice_number: $("#invoice_noo_entry").val(),
+									invoice_date : $("#invoice_date").val().split("-").join("/") , 
+									gl_date : $("#gl_date").val().split("-").join("/"),
+									// gross_amount: $("#Total_Invoice_amount").val(),
+									currency_code: $("#curr_code").val(),
+									branch_plant: $("#business_unit").val(),
+									P0411_Version: "IAL000021"
+							}
+		
+							row_obj.push(row_obj_body)
+						}
+						else{
+		
+							uniqueArray = obj.details.reduce((acc, current) => {
+								// Check if there is already an object with the same po_number and po_type
+								const existingObject = acc.find(
+									(obj) =>
+										obj.po_number === current.po_number && obj.po_type === current.po_type
+								);
+							
+								// If not found, push the current object into the accumulator array
+								if (!existingObject) {
+									acc.push(current);
+								}
+							
+								return acc;
+							}, []);
+		
+							uniqueArray.map((value)=>{
+		
+								row_obj_body = {
+									gate_number: $("#gate_number").html(),
+									order_number: value.po_number,
+									order_type: value.po_type,
+									order_company: $("#company_code").val(),
+									supplier_number: $("#vendor_code").val(),
+									invoice_number: $("#invoice_noo_entry").val(),
+									invoice_date : $("#invoice_date").val().split("-").join("/") , 
+									gl_date : $("#gl_date").val().split("-").join("/"),
+									// gross_amount: $("#Total_Invoice_amount").val(),
+									currency_code: $("#curr_code").val(),
+									branch_plant: $("#business_unit").val(),
+									P0411_Version: "IAL000021"
+								}
+		
 								
-							// }
+								row_obj.push(row_obj_body);
+							})
+		
+		
+		
+						}
+		
+		
+		
+		
+						// { "order_number": "23006790", "order_type": "OF", "order_company": "00201", "branch_plant": "20100", "supplier_number": "40008059", "invoice_number": "IN0411", "invoice_date": "04/11/2023", "gross_amount": "", "currency_code": "INR", "gl_date": "04/11/2023", "p0411_version": "IAL000021" }
+		
+						console.log("row obj :  ",row_obj);
+						$("#loader2").addClass("sk-loading")
+						$("#loader2").addClass("ibox-content")
+						$("#spin2").removeClass("d-none")
+		
+					
+						$.ajax({
+							url : `${[test[0].url]}/gate/voucher`,
+							type : 'POST',
+							data : JSON.stringify(row_obj),
+							headers: {
+								'Accept': 'application/json',
+								'Content-Type': 'application/json',
+								'Authorization': 'Bearer ' + token,
+							  },
+		
+							success : function(data ,  status , xhr)
+							{
+								if(xhr.status == 200){
+		
+									// try {
+									// 	// $(voucher_table).destroy()
+									// 	$("#voucher_body").empty();
+									// } catch (error) {
+										
+									// }
+		
+									// console.log('voucher dataAA  ---->' ,data.data );
+									// $("#voucher_body").append(`<tr><td>${data.data}</td><td>PV</td></tr>`)
 
-							// console.log('voucher dataAA  ---->' ,data.data );
-							// $("#voucher_body").append(`<tr><td>${data.data}</td><td>PV</td></tr>`)
-							let today = new Date();
-							let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
-							let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
-
-
-
-							$.ajax({
-									url : `${[test[0].url]}/remark/add`,
-									type : 'POST',
-									data : JSON.stringify({
-										gate_number: $("#gate_number").html(),
-										remark : "VOUCHER CREATED SUCCESSFULLY",
-										status  : 400,
-										username  : $(".name")[1].innerText,
-										timestamp : `${date} ${time}` 
-									}),
-									headers: {
-										'Accept': 'application/json',
-										'Content-Type': 'application/json',
-										'Authorization': 'Bearer ' + token,
-									},
-									success : function(data,status,xhr)
-									{
-
-										if(xhr.status == 200)
+									
+									let today_date = new Date();
+									let date_today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+									let Curr_time = String(today_date.getHours()).padStart(2, '0')+':'+String(today_date.getMinutes()).padStart(2, '0')+':'+String(today_date.getSeconds()).padStart(2, '0');
+				
+									// console.log(date +"  "+time );
+				
+									$.ajax({
+										url : `${[test[0].url]}/remark/add`,
+										type : 'POST',
+										data : JSON.stringify({
+				
+											gate_number: $("#gate_number").html(),
+											remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
+											status  : 400,
+											username  : $(".name")[1].innerText,
+											timestamp : `${date_today} ${Curr_time}` 
+										}),
+										headers: {
+											'Accept': 'application/json',
+											'Content-Type': 'application/json',
+											'Authorization': 'Bearer ' + token,
+										},
+										success : function(data,status,xhr)
 										{
-											$.ajax({
-												url: `${[test[0].url]}/reservationMaster/delete?gateNumber=${$("#gate_number").html()}&username=${$(".name")[1].innerText}`,
-												type: "delete",
-												headers: {
-													'Accept': 'application/json',
-													'Content-Type': 'application/json',
-													'Authorization': 'Bearer '+ token,
-												},
-												success: function (data,status,xhr) {
-													console.log(data);
-													console.log(xhr);
-													if(xhr.status == 200)
-													{
-														window.location.reload();
-													}
-													else{
-															$.errorMessage(xhr.responseJSON.message);
-													}
-												},
-												error: function (xhr) {
-													if(xhr.status == 498)
-													{
-														$.tokenError();
-													}
-													else if(xhr.status >= 400 && xhr.status < 500){
-							
-															$.errorMessage(xhr.responseJSON.message);
-													}
-													else{
-															$.errorMessage(xhr.responseJSON.error)
-													}
-												}
-											})
-											
+										  console.log("remarks data :" ,data);
+										  let today = new Date();
+										  let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+										  let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
+			  
+										  $.ajax({
+												  url : `${[test[0].url]}/remark/add`,
+												  type : 'POST',
+												  data : JSON.stringify({
+													  gate_number: $("#gate_number").html(),
+													  remark : "VOUCHER CREATED SUCCESSFULLY",
+													  status  : 400,
+													  username  : $(".name")[1].innerText,
+													  timestamp : `${date} ${time}` 
+												  }),
+												  headers: {
+													  'Accept': 'application/json',
+													  'Content-Type': 'application/json',
+													  'Authorization': 'Bearer ' + token,
+												  },
+												  success : function(data,status,xhr)
+												  {
+			  
+													  if(xhr.status == 200)
+													  {
+														  $.ajax({
+															  url: `${[test[0].url]}/reservationMaster/delete?gateNumber=${$("#gate_number").html()}&username=${$(".name")[1].innerText}`,
+															  type: "delete",
+															  headers: {
+																  'Accept': 'application/json',
+																  'Content-Type': 'application/json',
+																  'Authorization': 'Bearer '+ token,
+															  },
+															  success: function (data,status,xhr) {
+																  console.log(data);
+																  console.log(xhr);
+																  if(xhr.status == 200)
+																  {
+																	  window.location.reload();
+																  }
+																  else{
+																		  $.errorMessage(xhr.responseJSON.message);
+																  }
+															  },
+															  error: function (xhr) {
+																  if(xhr.status == 498)
+																  {
+																	  $.tokenError();
+																  }
+																  else if(xhr.status >= 400 && xhr.status < 500){
+										  
+																		  $.errorMessage(xhr.responseJSON.message);
+																  }
+																  else{
+																		  $.errorMessage(xhr.responseJSON.error)
+																  }
+															  }
+														  })
+														  
+													  }
+												  },
+											  })
 										}
-									},
-								})
+									  })
 
-
-
-							
-
-							// $.voucherMatch(login , payload_voucher_number, data.data[0].vendor_code , obj)
-
-							// $.ajax({
-							// 	url : `${[login[0].url]}/jderest/v2/dataservice/view/V75I411A?$filter=F0411.DOC EQ ${data.data}&$filter=F0411.DCT EQ PV&$filter=F0411.KCO EQ 00201&$filter=F0411.MCU EQ 20100&$filter=F0411.AN8 EQ ${$("#vender_code").val()}`,
-							// 	headers: {
-							// 			'Accept': 'application/json',
-							// 			'Content-Type': 'application/json',
-							// 			"Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
-							// 		},
-							// 	success : function(data , status , xhr)
-							// 	{
-							// 		if(xhr.status == 200)
-							// 		{
-
-							// 			let data_length = data.fs_DATABROWSE_V75I411A.data.gridData.rowset.length
-
-							// 			let data_body = data.fs_DATABROWSE_V75I411A.data.gridData.rowset
-
-							// 			for(let i = 0 ; i < data_length ; i++)
-							// 			{
-							// 				let inputDate = data_body[i].F0411_DICJ;
-							// 				let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
-							// 				let inputDate2 = data_body[i].F0411_DGJ;
-							// 				let formattedDate2 = `${inputDate2.substr(0, 4)}-${inputDate2.substr(4, 2)}-${inputDate2.substr(6, 2)}`
-							// 				let inputDate3 = data_body[i].F0411_DIVJ;
-							// 				let formattedDate3 = `${inputDate3.substr(0, 4)}-${inputDate3.substr(4, 2)}-${inputDate3.substr(6, 2)}`
-
-							// 				// $(user_date).val(formattedDate.split("-").reverse().join("-"))
-							// 				$("#voucher_body").append(`<tr><td>${data_body[i].F0411_AN8}</td><td>${data_body[i].F0411_KCO}</td><td>${data_body[i].F0411_DOC}</td><td>${data_body[i].F0411_DCT}</td><td>${data_body[i].F0411_VINV}</td><td>${data_body[i].F0411_PST}</td><td>${formattedDate3.split("-").reverse().join("-")}</td><td>${formattedDate2.split("-").reverse().join("-")}</td><td>${data_body[i].F0411_AG}</td><td>${data_body[i].F0411_AAP}</td><td>${data_body[i].F0411_ICU}</td><td>${formattedDate.split("-").reverse().join("-")}</td><td>${data_body[i].F0411_YTYP == " " || data_body[i].F75I411_YTYP == "" ? "-" : data_body[i].F75I411_YTYP}</td></tr>`)
-							// 			}
-
-							// 			$("#data3").removeClass("invisible");
-							// 			$("#create-vc").hide();
-							// 			try {
-							// 				voucher_table = $("#voucher_table").DataTable()
-							// 			} catch (error) {
+		
+		
+		
+									
+		
+									// $.voucherMatch(login , payload_voucher_number, data.data[0].vendor_code , obj)
+		
+									// $.ajax({
+									// 	url : `${[login[0].url]}/jderest/v2/dataservice/view/V75I411A?$filter=F0411.DOC EQ ${data.data}&$filter=F0411.DCT EQ PV&$filter=F0411.KCO EQ 00201&$filter=F0411.MCU EQ 20100&$filter=F0411.AN8 EQ ${$("#vender_code").val()}`,
+									// 	headers: {
+									// 			'Accept': 'application/json',
+									// 			'Content-Type': 'application/json',
+									// 			"Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
+									// 		},
+									// 	success : function(data , status , xhr)
+									// 	{
+									// 		if(xhr.status == 200)
+									// 		{
+		
+									// 			let data_length = data.fs_DATABROWSE_V75I411A.data.gridData.rowset.length
+		
+									// 			let data_body = data.fs_DATABROWSE_V75I411A.data.gridData.rowset
+		
+									// 			for(let i = 0 ; i < data_length ; i++)
+									// 			{
+									// 				let inputDate = data_body[i].F0411_DICJ;
+									// 				let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
+									// 				let inputDate2 = data_body[i].F0411_DGJ;
+									// 				let formattedDate2 = `${inputDate2.substr(0, 4)}-${inputDate2.substr(4, 2)}-${inputDate2.substr(6, 2)}`
+									// 				let inputDate3 = data_body[i].F0411_DIVJ;
+									// 				let formattedDate3 = `${inputDate3.substr(0, 4)}-${inputDate3.substr(4, 2)}-${inputDate3.substr(6, 2)}`
+		
+									// 				// $(user_date).val(formattedDate.split("-").reverse().join("-"))
+									// 				$("#voucher_body").append(`<tr><td>${data_body[i].F0411_AN8}</td><td>${data_body[i].F0411_KCO}</td><td>${data_body[i].F0411_DOC}</td><td>${data_body[i].F0411_DCT}</td><td>${data_body[i].F0411_VINV}</td><td>${data_body[i].F0411_PST}</td><td>${formattedDate3.split("-").reverse().join("-")}</td><td>${formattedDate2.split("-").reverse().join("-")}</td><td>${data_body[i].F0411_AG}</td><td>${data_body[i].F0411_AAP}</td><td>${data_body[i].F0411_ICU}</td><td>${formattedDate.split("-").reverse().join("-")}</td><td>${data_body[i].F0411_YTYP == " " || data_body[i].F75I411_YTYP == "" ? "-" : data_body[i].F75I411_YTYP}</td></tr>`)
+									// 			}
+		
+									// 			$("#data3").removeClass("invisible");
+									// 			$("#create-vc").hide();
+									// 			try {
+									// 				voucher_table = $("#voucher_table").DataTable()
+									// 			} catch (error) {
+													
+									// 			}
+		
+									// 			let remove_status = $("#bread a")[4]
+									// 			let add_status = $("#bread a")[5]
+		
+									// 			$(remove_status).removeClass("active")
+									// 			$(add_status).addClass("active")
+									// 		}
+		
+									// 	},
+									// 	error : function(xhr)
+									// 	{
+		
 											
-							// 			}
-
-							// 			let remove_status = $("#bread a")[4]
-							// 			let add_status = $("#bread a")[5]
-
-							// 			$(remove_status).removeClass("active")
-							// 			$(add_status).addClass("active")
-							// 		}
-
-							// 	},
-							// 	error : function(xhr)
-							// 	{
-
+		
+									// 	},
+									// 	complete : ()=>{
+		
+											
+		
+		
+									// 	}
+									// })
+		
+									let remove_status = $("#bread a")[4]
+									let add_status = $("#bread a")[5]
+		
+									$(remove_status).removeClass("active")
+									$(add_status).addClass("active")
+		
+		
+		
 									
-
-							// 	},
-							// 	complete : ()=>{
-
 									
-
-
-							// 	}
-							// })
-
-							let remove_status = $("#bread a")[4]
-							let add_status = $("#bread a")[5]
-
-							$(remove_status).removeClass("active")
-							$(add_status).addClass("active")
-
-
-
-							
-							
-
-							const swalWithBootstrapButtons = Swal.mixin({
-								customClass: {
-								confirmButton: 'btn btn-sm btn-success mx-1',
-								},
-								buttonsStyling: false
-							})
-						
-							swalWithBootstrapButtons.fire({
-								title: '',
-								text: "Voucher Created Successfully",
-								icon: 'success',
-								confirmButtonText: 'OK',
-								reverseButtons: true
-							}).then(()=>{
-								$("#create_voucher").removeClass("invisible")
-								$("#loader4").removeClass("sk-loading")
-								$("#loader4").removeClass("ibox-content")
-								$("#spin4").addClass("d-none")
-
-								// Select the last tab
-								var $lastTab = $("ul.nav-tabs li:last-child a");
+		
+									const swalWithBootstrapButtons = Swal.mixin({
+										customClass: {
+										confirmButton: 'btn btn-sm btn-success mx-1',
+										},
+										buttonsStyling: false
+									})
 								
-								// Trigger a click event on the last tab
-								$lastTab.tab("show");
-							})
+									swalWithBootstrapButtons.fire({
+										title: '',
+										text: "Voucher Created Successfully",
+										icon: 'success',
+										confirmButtonText: 'OK',
+										reverseButtons: true
+									}).then(()=>{
+										$("#create_voucher").removeClass("invisible")
+										$("#loader2").removeClass("sk-loading")
+										$("#loader2").removeClass("ibox-content")
+										$("#spin2").addClass("d-none")
+		
+										// Select the last tab
+										var $lastTab = $("ul.nav-tabs li:last-child a");
+										
+										// Trigger a click event on the last tab
+										$lastTab.tab("show");
+									})
+						
+		
+		
+		
+		
+								}
+								else{
+		
+									console.log('voucher 207 error ---->' ,xhr);
+		
+									$.errorMessage(xhr.responseJSON.message)
+								
+		
+								}
+							},
+							error  :  function(xhr)
+							{
+									console.log('voucher error ---->' ,xhr);
+								
+									if(xhr.status == 498)
+									{
+										$.tokenError();
+									}
+									else if(xhr.status >= 400 && xhr.status < 500){
+										
+										$.errorMessage(xhr.responseJSON.message);
+		
+										
+									}
+									else{
+										$.errorMessage(xhr.responseJSON.error)
+										
+									}
+							},
+							complete : ()=>{
+		
+								// try {
+								// 	$("#voucher_table").DataTable()
+								// } catch (error) {
+									
+								// }
+		
+								$("#create_voucher").removeClass("invisible")
+								$("#loader2").removeClass("sk-loading")
+								$("#loader2").removeClass("ibox-content")
+								$("#spin2").addClass("d-none")
+
+							}
+							
+		
+		
+						})
+					  
+					  
+					  
+
+				
 				
 
 
-
-
-						}
-						else{
-
-							console.log('voucher 207 error ---->' ,xhr);
-
-							$.errorMessage(xhr.responseJSON.message)
-						
-
-						}
-					},
-					error  :  function(xhr)
-					{
-							console.log('voucher error ---->' ,xhr);
-						
-							if(xhr.status == 498)
-							{
-								$.tokenError();
-							}
-							else if(xhr.status >= 400 && xhr.status < 500){
-								
-								$.errorMessage(xhr.responseJSON.message);
-
-								
-							}
-							else{
-								$.errorMessage(xhr.responseJSON.error)
-								
-							}
-					},
-					complete : ()=>{
-
-						// try {
-						// 	$("#voucher_table").DataTable()
-						// } catch (error) {
-							
-						// }
-
-						$("#create_voucher").removeClass("invisible")
-						$("#loader4").removeClass("sk-loading")
-						$("#loader4").removeClass("ibox-content")
-						$("#spin4").addClass("d-none")
-
-					}
+				  }
+				  else if(result.isDismissed){
 					
+					
+					}
+				  else {
 
-
-				})
+					console.log('value of result  ---->' ,result);
+				 }
+			   });
 
                 
 
@@ -3737,9 +3807,9 @@ $.ajax ({
 									
 								},
 								error: function(xhr){
-									$("#loader4").removeClass("sk-loading")
-									$("#loader4").removeClass("ibox-content")
-									$("#spin4").addClass("d-none")
+									$("#loader2").removeClass("sk-loading")
+									$("#loader2").removeClass("ibox-content")
+									$("#spin2").addClass("d-none")
 									console.log(xhr);
 								},
 								complete : ()=>{
@@ -3748,9 +3818,9 @@ $.ajax ({
 									details = [];
 									data = [];
 									
-									$("#loader4").removeClass("sk-loading")
-									$("#loader4").removeClass("ibox-content")
-									$("#spin4").addClass("d-none")
+									$("#loader2").removeClass("sk-loading")
+									$("#loader2").removeClass("ibox-content")
+									$("#spin2").addClass("d-none")
 									$(".details_statuss").removeAttr("readonly", "readonly")
 									$("#Modal_details").removeClass("invisible")
 									
@@ -3789,7 +3859,7 @@ $.ajax ({
 
 						
 						let today = new Date();
-						let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
+						let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
 						let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 						// console.log(date +"  "+time );
 
@@ -4019,7 +4089,7 @@ $.ajax ({
 					if($("textarea").val().length != 0)
 					{
 						let today = new Date();
-						let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate());
+						let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
 						let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');
 
 						// console.log(date +"  "+time );

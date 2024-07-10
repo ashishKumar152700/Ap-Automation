@@ -3087,717 +3087,798 @@ $.ajax ({
 
             $("#create_grn").click((e)=>{
 
-                $("#loader4").addClass("sk-loading")
-                $("#loader4").addClass("ibox-content")
-                $("#spin4").removeClass("d-none")
-                e.preventDefault();
-                let check_grn = 0;
+               
+                window.scrollTo({
+                    top:  70,
+                    behavior: 'smooth'
+                  });
 
 
-                let shouldBreak = true;
-
-                // if($("#dc_number_type").val() != null && $("#invoice_noo_entry").val() != "")
-                // {
-                //     $("#dc_number_type").css("border" , "1px solid #e9ecef")
-
-                if($("#dc_number_head").val() == "")
-                {
-                    $("#dc_number_type").removeClass("check_grn")
-                }
-                
-                for(let i = 0 ; i < $(".check_grn").length ; i++)
-                {
-                    let check_grn_border = $(".check_grn")[i];
-                    
-                    if( $(".check_grn")[i].value != "")
-                    {
-                        $(check_grn_border).css("border" , "1px solid #e5e6e7")
-                        check_grn++;
-                    }
-                    else{
-                        $.errorMessage("Please Fill The Required Fields")
-
-                        $(check_grn_border).css("border" , "1px solid red")
-
-
-                    }
-
-                }
-
-
-            
-
-
-                if(check_grn == $(".check_grn").length)
-                {
-
-
-                
-                // $("#loader4").addClass("sk-loading")
-                // $("#loader4").addClass("ibox-content")
-                // $("#spin4").removeClass("d-none")
-
-                    let tab_head_len = $("#tab_logic tr").length - 3
-                    let tab_details_len = $("#tab_logicc tr").length - 2
-
-
-                  function checked()  {
-                      for(let j = 0 ; j <= tab_details_len ; j++)
-                      {
-                        let details_po = $(".onee")[j]
-
-                        if(po_check[0] == $(details_po).val())
-                        {
-
-                            let line = $(".line_numm")[j]
-                            let statuss = $(".details_statuss")[j];
-                            // let hsn_code = $(".amount")[j];
-
-                            let line_number = $(line).val();
-                            let quantity = $(statuss).val();
-                            let amount = 55555; //
-                            let status = 300; 
-                            let item_code = 5656; //
-                            let hsn_code = 123456; //
-                            let uom = "AC"; //
-                            let rate = 98765;  //
-                            let gate_number = $("#gate_number").html()
-
-
-                            reciept_details.push({line_number,status,gate_number,item_code,hsn_code,quantity,uom,rate,amount})
-                        }
-                      
-                      }
-
-                    //   console.log(po_check);
-
-                      po_check = []
-                  }
-
-
-
-                    for(i = 0 ; i<= tab_head_len ; i++)
-                    {
-                        let grn_order_no = $(".po")[i]
-                        let grn_order_type = $(".line_num")[i]
-                        let grn_order_company = $(".head_company")[i]
-                        let grn_amount = $(".details_gate_id")[i]
-                        let grn_total = $(".details_status")[i]
-                        let grn_currency = $(".currency_head")[i]
-                        
-                        let po_number = $(grn_order_no).val()
-                        let po_type = $(grn_order_type).val()
-                        let company_code = $(grn_order_company).val()
-                        let amount = $(grn_amount).val()
-                        let total = $(grn_total).val()
-                        let currency = $(grn_currency).val()
-                        let G_L_Date = ""
-                        let Receipt_Date = ""
-                        let P4312_Version = "ZJDE0001"
-                        
-                        po_check.push(po_number);
-
-                        details.push({po_number,po_type,company_code,currency,total,amount})
-                        // checked();
-
-                        // let business_unit = 101;
-
-                        
-                       
-                        
-                        
-                         let reciept_number;
-                        //  let vendorname = "QWERTY"
-                         
-                         let gate_number = $("#gate_number").html()
-                        
-                        
-                        
-                        
-                         
-
-
-                        grn_head.push({vehicle_nbr,material_type,vendorname,weight,division,remark,in_time,gate_number,po_number,po_type,business_unit,billto_name,billto_address1,billto_gstin,billto_city,billto_state,billto_zipcode,shipto_name,shipto_address1,shipto_gstin,shipto_city,shipto_state,shipto_zipcode,lr_no,lr_date,contract_no,contract_date,reciept_details})
-
-                        
-
-                                                        
-                    }
-
-
-                   
-
-                    // vendorname = "ravi"
-
-                    let gate_number = $("#gate_number").html()
-
-                    let status = {code : 200}
-
-                    company_code = $("#company_code").val()
-                    // doc_company = $("#doc_company").val()
-                    business_unit = $("#business_unit").val()
-                    state = $("#state").val()
-                    invoice_number = $("#invoice_no").val()
-                    invoice_date = $("#invoice_date").val().split("-").reverse().join("-")
-                    invoice_type = $("#invoice_type").val()
-                    currency_code = $("#curr_code").val()
-                    supplier_gstin = $("#supplier_gstin").val()
-                    tds_code = $("#tds_code").val()
-                    vendor_code = $("#vendor_code").val()
-                    vendorname = $("#vendor_name").val()
-                    physical_doc = $("#physical_doc_rec").val()
-                    source = $("#source").val()
-                    amount = $("#amount").val()
-                    GL_date = $("#gl_date").val().split("-").reverse().join("-")
-
-                    billto_name = $("#billto_name").val() 
-                    billto_address1 = $("#billto_address1").val() 
-                    billto_gstin = $("#billto_gstin").val() 
-                    billto_city = $("#billto_city").val() 
-                    billto_state = $("#billto_state").val() 
-                    billto_zipcode = $("#billto_zipcode").val() 
-                    shipto_name = $("#shipto_name").val() 
-                    shipto_address1 = $("#shipto_address1").val() 
-                    shipto_gstin = $("#shipto_gstin").val() 
-                    shipto_city = $("#shipto_city").val() 
-                    shipto_state = $("#shipto_state").val() 
-                    shipto_zipcode = $("#shipto_zipcode").val()
-                    lr_no = $("#lr_no").val()
-                    lr_date = $("#lr_date").val()
-                    contract_no = $("#contract_no").val()
-                    contract_date = $("#contract_date").val()
-
-
-                    // company_code,doc_company,business_unit,state,invoice_no,invoice_date,invoice_type,currency_code,supplier_gstin,tds_code,vendor_code,vendor_name,physical_doc,source,amount,gl_date
-                    
-
-                    entity.push({company_code,doc_company,business_unit,state,invoice_number,invoice_date,invoice_type,currency_code,supplier_gstin,tds_code,vendor_code,vendorname,physical_doc,source,amount,GL_date,gate_number,vendorname,vehicle_nbr,material_type,weight,in_time,division,remark,status,billto_name,billto_address1,billto_gstin,billto_city,billto_state,billto_zipcode,shipto_name,shipto_address1,shipto_gstin,shipto_city,shipto_state,shipto_zipcode,lr_no,lr_date,contract_no,contract_date})
-
-                    console.log("entity : " , entity);
-
-                // })
-
-                var d = 2;
-
-
-                let tab_logicc_rows = $("#table-body tr").length
-
-                $.ajax({
-                    url : `${[login[0].url]}/jderest/v2/dataservice/table/F43121?$field=F43121.AN8&$field=F43121.CNID&$filter=F43121.MATC EQ 1&$filter=F43121.AN8 EQ ${$("#vendor_code").val()}&$filter=F43121.CNID EQ ${$("#invoice_noo_entry").val()}&$filter=F43121.TRDJ GE 01042024`,
-                    headers: {
-                        "Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
+                  const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                      icon: 'my-swal-icon',
+                      confirmButton: "btn btn-sm btn-success mx-1",
+                      cancelButton: "btn btn-sm btn-info mx-1",
+                      denyButton : "btn btn-sm btn-danger mx-1",
                     },
-                    success : function(res_daata,status,xhr)
-                    {
+                    buttonsStyling: false,
+                  });
+              
+                  swalWithBootstrapButtons
+                    .fire({
+                      position: "top",
+                      // title: "Please Re-Check The Below Details",
+                      html: `<b>Re-Check The Below Details<br>Invoice Number :- ${$("#invoice_number").val()}<br>Invoice Date :- ${$("#invoice_date").val()}</b>`,
+                      // text: `Invoice Number :- ${$("#invoice_number").val()}\n\nInvoice Date :- ${$("#invoice_date").val()}`,
+                      icon: "warning",
+                      showCancelButton: true,
+                      showDenyButton: true,
+                      confirmButtonText: "OK",
+                      cancelButtonText: "Re-Map",
+                      denyButtonText: "Back",
+                      // reverseButtons: true,
+                    })
+                    .then(async(result) => {
+                      if (result.isConfirmed) {
 
-                        if(res_daata.fs_DATABROWSE_F43121.data.gridData.summary.records > 0)
-                        {
-
-                            $.errorMessage(`Duplicate Supplier Invoice`)
-
-                            $("#loader4").removeClass("sk-loading")
-                            $("#loader4").removeClass("ibox-content")
-                            $("#spin4").addClass("d-none")
-
-                        }
-                        else{
-
-                            // let grids_data = [];
-
-                            let row_obj_data = [];
-
-
-                            for(let k = 0 ; k < tab_logicc_rows && shouldBreak ; k++){
-
-                                let grids_data = [];
-                                
-                                if($(".accept_quantity")[k].value != ""){
-
-                                    grids_data.push({
-                                        "location": $(".Location")[k].value,
-                                        "item_number" : $(".po_item")[k].value,
-                                        "quantity": $(".accept_quantity")[k].value,
-                                    })
-
-                                }
-
-                                let date = obj.createdAt.split("-").join("/");
-
-                                let row_obj = {};
-
-                                    let version;
-
-                                    if(obj.transactionType == "ST/OT")
-                                    {
-                                        version  = "RSB001"
-                                    }
-                                    else{
-                                        version = "IAL000002"
-                                    }
-                                        
-                                        row_obj = {
-                                                supplier_number: $("#vendor_code").val(),
-                                                line_number: $(".line_numm")[k].value,
-                                                order_number : $(".onee")[k].value,
-                                                order_type : $(".po_type")[k].value,
-                                                order_company : $(".detail_company_code")[k].value,
-                                                branch_plant : $(".business_detail")[0].value.replace(/ /g,''),
-                                                location_data : grids_data,
-                                                supplier_invoice_number: $("#invoice_noo_entry").val(),
-                                                supplier_invoice_date: $("#invoice_date").val().split("-").join("/"),
-                                                gate_entry_number: obj.gate_number,
-                                                gate_entry_date: date,
-                                                P4312_Version: version,
-                                                road_permit_number: $("#road_permit_number").val(),
-                                                gl_date: $("#gl_date").val().split("-").join("/"),
-                                        }
-                                    
-                                    
-
-
-                                    row_obj_data.push(row_obj)
-                                    
-                                
-                                
-
-                            }
-
-                                console.log("row_obj " , row_obj_data);
-
-
-
-
-                            // for(let k = 0 ; k < tab_logicc_rows ; k++){
-
-
-                            //     grids_data.push({
-                            //         row_number_for_update: $(".line_numm")[k].value,
-                            //         road_permit_number: $("#road_permit_number").val(),
-                            //         quantity: $(".accept_quantity")[k].value,
-                            //         rec_opt: "1"
-                            //         })
-                            // }
-
-                            //     let date = obj.createdAt.split("-").join("/");
-
-                            //     let row_obj = {};
-
-
-                            //         row_obj = {
-
-                            //             boe_number : $("#boe_number").val(),
-                            //             port_code : $("#port_code").val(),
-                            //             order_number : $(".onee")[0].value,
-                            //             order_type : $(".po_type")[0].value,
-                            //             order_company : $("#company_code").val(),
-                            //             branch_plant : $(".business_detail")[0].value.replace(/ /g,''),
-                            //             supplier_invoice_number: $("#invoice_noo_entry").val(),
-                            //             supplier_invoice_date: $("#invoice_date").val().split("-").reverse().join("/"),
-                            //             gate_entry_number: obj.gate_number,
-                            //             gate_entry_date: date,
-                            //             P4312_Version: "IAL000002",
-                            //             gl_date: $("#gl_date").val().split("-").reverse().join("/"),
-                            //             grid_data: grids_data
-                            //             }
-
-
-                            //             row_obj_data.push(row_obj)
-                                    
-                                
-                                
-
-                            //     console.log("row_obj " , row_obj_data);
-
-                                
-
-
-                                                    if($("#Diffrence").val() <= 1 && $("#Diffrence").val() > -1)
-                                                    {
-
-                                                        console.log('url   ---->' ,`${[test[0].url]}/gate/grn`);
                         
-                                                    $.ajax({
-                                                        url: `${[test[0].url]}/gate/grn`,
-                                                        type : 'POST',
-                                                        data : JSON.stringify(row_obj_data),
-                                                        headers: {
-                                                            'Accept': 'application/json',
-                                                            'Content-Type': 'application/json',
-                                                            'Authorization': 'Bearer ' + token,
-                                                        },
-                                                            success: function(data,status,xhr){
-
-                                                                console.log(data);
-
-                                                                console.log("success : ",xhr);
-
-                                                                if(data.status == 200)
-                                                                {
-
-                                                                    // console.log(data);
-                                                            
-                                                                    receipt_number_details = data.data;
-                                                                    console.log("receipt number :" ,receipt_number_details);
-                                                                    obj.receipt_number = data.data;
-
-                                                                    grn_done = true;
-
+                        $("#loader4").addClass("sk-loading")
+                        $("#loader4").addClass("ibox-content")
+                        $("#spin4").removeClass("d-none")
+                        e.preventDefault();
+                        let check_grn = 0;
+        
+        
+                        let shouldBreak = true;
+        
+                        // if($("#dc_number_type").val() != null && $("#invoice_noo_entry").val() != "")
+                        // {
+                        //     $("#dc_number_type").css("border" , "1px solid #e9ecef")
+        
+                        if($("#dc_number_head").val() == "")
+                        {
+                            $("#dc_number_type").removeClass("check_grn")
+                        }
+                        
+                        for(let i = 0 ; i < $(".check_grn").length ; i++)
+                        {
+                            let check_grn_border = $(".check_grn")[i];
+                            
+                            if( $(".check_grn")[i].value != "")
+                            {
+                                $(check_grn_border).css("border" , "1px solid #e5e6e7")
+                                check_grn++;
+                            }
+                            else{
+                                $.errorMessage("Please Fill The Required Fields")
+        
+                                $(check_grn_border).css("border" , "1px solid red")
+        
+        
+                            }
+        
+                        }
+        
+        
+                    
+        
+        
+                        if(check_grn == $(".check_grn").length)
+                        {
+        
+        
+                        
+                        // $("#loader4").addClass("sk-loading")
+                        // $("#loader4").addClass("ibox-content")
+                        // $("#spin4").removeClass("d-none")
+        
+                            let tab_head_len = $("#tab_logic tr").length - 3
+                            let tab_details_len = $("#tab_logicc tr").length - 2
+        
+        
+                          function checked()  {
+                              for(let j = 0 ; j <= tab_details_len ; j++)
+                              {
+                                let details_po = $(".onee")[j]
+        
+                                if(po_check[0] == $(details_po).val())
+                                {
+        
+                                    let line = $(".line_numm")[j]
+                                    let statuss = $(".details_statuss")[j];
+                                    // let hsn_code = $(".amount")[j];
+        
+                                    let line_number = $(line).val();
+                                    let quantity = $(statuss).val();
+                                    let amount = 55555; //
+                                    let status = 300; 
+                                    let item_code = 5656; //
+                                    let hsn_code = 123456; //
+                                    let uom = "AC"; //
+                                    let rate = 98765;  //
+                                    let gate_number = $("#gate_number").html()
+        
+        
+                                    reciept_details.push({line_number,status,gate_number,item_code,hsn_code,quantity,uom,rate,amount})
+                                }
+                              
+                              }
+        
+                            //   console.log(po_check);
+        
+                              po_check = []
+                          }
+        
+        
+        
+                            for(i = 0 ; i<= tab_head_len ; i++)
+                            {
+                                let grn_order_no = $(".po")[i]
+                                let grn_order_type = $(".line_num")[i]
+                                let grn_order_company = $(".head_company")[i]
+                                let grn_amount = $(".details_gate_id")[i]
+                                let grn_total = $(".details_status")[i]
+                                let grn_currency = $(".currency_head")[i]
                                 
-                                                                            $.ajax({
-                                                                            url: `${[login[0].url]}/jderest/v2/dataservice/table/F43121?$field=F43121.DOC&$field=F43121.DCT&$field=F43121.UREC&$field=F43121.LOCN&$field=F43121.GLC&$field=F43121.URDT&$field=F43121.AOPN&$field=F43121.DOCO&$field=F43121.LITM&$field=F43121.MCU&$filter=F43121.MATC EQ 1&$filter=F43121.MCU EQ ${$("#business_unit").val()}&$filter=F43121.DOCO EQ ${$("#purchase_order").val()}&$filter=F43121.DCTO EQ ${$("#purchase_type").val()}&$filter=F43121.CNID EQ ${$("#invoice_noo_entry").val()}&$filter=F43121.DCT EQ OV&$field=F43121.AREC&$field=F43121.VRMK&$field=F43121.CNID`,
-                                                                            headers: {
-                                                                                    'Accept': 'application/json',
-                                                                                    'Content-Type':'application/json',
-                                                                                    "Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
-                                                                                },
+                                let po_number = $(grn_order_no).val()
+                                let po_type = $(grn_order_type).val()
+                                let company_code = $(grn_order_company).val()
+                                let amount = $(grn_amount).val()
+                                let total = $(grn_total).val()
+                                let currency = $(grn_currency).val()
+                                let G_L_Date = ""
+                                let Receipt_Date = ""
+                                let P4312_Version = "ZJDE0001"
                                 
-                                                                                success: function(data){
-
-                                                                                    $("#reject_invoice").addClass("invisible")
-
-                                                                                    $("#data_list").removeClass("invisible");
-                                                                                    $("#data1").trigger("click")
-
-                                                                                    console.log("grn data : ", data);
-                                                                                    // let grn_len = $("#grn_table tr").length - 2
-                                                                                    let grn_rows = data.fs_DATABROWSE_F43121.data.gridData.rowset
-                                                                                    
-                                                                                    let table_rows = $("#grn_table tr").length - 2;
-                                                                                    
-                                                                                    let valid_data = $(".order_no")[0]
-
-                                                                                    for(let j = 0 ; j < (table_rows == 0 && $(valid_data).val() == "" ? grn_rows.length -1 : grn_rows.length); j++)
-                                                                                    {
-                                                                                        $("#grn_row").trigger("click");
-                                                                                    }
-                                                                                    
-                                                                                    for(let i = (table_rows == 0 ? table_rows : table_rows + 1) , p = 0 ; i < (table_rows == 0  ? table_rows + grn_rows.length  : (table_rows + 1) + grn_rows.length) ; i++ , p++)
-                                                                                    {
-                                                                                    
-                                                                                        if($(valid_data).val() != "" && table_rows == 0 && d == 0){
-
-                                                                                        // console.log(`inside if  ${data.po_details.length}   ${i+1}`);
-
-                                                                                        console.log(grn_rows[p].F43121_DOCO)
-
-                                                                                        
-                                                                                        for(let s = 0 ; s < grn_rows.length ; s++)
-                                                                                        {
-                                                                                                
-                                                                                            let order_no = $(".document_no")[s+1]
-                                                                                            let item_no = $(".do_ty")[s+1]
-                                                                                            let business_unit_grn = $(".business_unit_grn")[s+1]
-                                                                                            let document_no = $(".item_no")[s+1]
-                                                                                            let invoice_no_grn = $(".invoice_no_grn")[s+1]
-                                                                                            let do_ty = $(".quantity_recieved")[s+1]
-                                                                                            let quantity_recieved = $(".order_no")[s+1]
-                                                                                            let amount_open = $(".amount_open")[s+1]
-                                                                                            let location = $(".location")[s+1]
-                                                                                            let user_date = $(".user_date")[s+1]
-                                                                                            let glc = $(".glc")[s+1]
-                                                        
-                                                        
-                                                                                            $(order_no).val(grn_rows[s].F43121_DOC)
-                                                                                            $(item_no).val(grn_rows[s].F43121_DCT)
-                                                                                            $(business_unit_grn).val(grn_rows[s].F43121_MCU.replace(/ /g,''))
-                                                                                            $(document_no).val(grn_rows[s].F43121_LITM)
-                                                                                            $(invoice_no_grn).val(grn_rows[s].F43121_CNID)
-                                                                                            $(do_ty).val(grn_rows[s].F43121_UREC)
-                                                                                            $(quantity_recieved).val(grn_rows[s].F43121_VRMK.replace(/ /g,''))
-                                                                                            $(amount_open).val(grn_rows[s].F43121_AREC)
-                                                                                            $(location).val(grn_rows[s].F43121_LOCN)
-                                                                                            let inputDate = grn_rows[s].F43121_URDT;
-                                                                                            $(glc).val(grn_rows[s].F43121_GLC);
-                                                                                            let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
-                                                                                            $(user_date).val(formattedDate.split("-").reverse().join("-"))
-                                                                                            // $(user_date).val(grn_rows[s].F43121_URDT)
-
-                                                                                            if(+grn_rows[s].F43121_MATC == 4)
-                                                                                            {
-                                                                                                // $(user_date).parent().parent().css("background-color" , "red")
-                                                                                                $(user_date).parent().parent().children().children().css("color" , "red")
-
-                                                                                            }
-                                                                                                    
-                                                                                                }
-
-                                                                                                break;
-                                                                                        }
-
-                                                                                        else{
-
-                                                                                            
-                                                                                            let order_no = $(".document_no")[i]
-                                                                                            let item_no = $(".do_ty")[i]
-                                                                                            let business_unit_grn = $(".business_unit_grn")[i]
-                                                                                            let document_no = $(".item_no")[i]
-                                                                                            let invoice_no_grn = $(".invoice_no_grn")[i]
-                                                                                            let do_ty = $(".quantity_recieved")[i]
-                                                                                            let quantity_recieved = $(".order_no")[i]
-                                                                                            let amount_open = $(".amount_open")[i]
-                                                                                            let location = $(".location")[i]
-                                                                                            let user_date = $(".user_date")[i]
-                                                                                            let glc = $(".glc")[i]
-                                                                                            
-                                                                                            
-                                                                                            $(order_no).val(grn_rows[p].F43121_DOC)
-                                                                                            $(item_no).val(grn_rows[p].F43121_DCT)
-                                                                                            $(business_unit_grn).val(grn_rows[p].F43121_MCU.replace(/ /g,''))
-                                                                                            $(document_no).val(grn_rows[p].F43121_LITM)
-                                                                                            $(invoice_no_grn).val(grn_rows[p].F43121_CNID)
-                                                                                            $(do_ty).val(grn_rows[p].F43121_UREC)
-                                                                                            $(quantity_recieved).val(grn_rows[p].F43121_VRMK.replace(/ /g,''))
-                                                                                            $(amount_open).val(grn_rows[p].F43121_AREC)
-                                                                                            $(location).val(grn_rows[p].F43121_LOCN)
-                                                                                            let inputDate = grn_rows[p].F43121_URDT;
-                                                                                            $(glc).val(grn_rows[p].F43121_GLC);
-                                                                                            let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
-                                                                                            $(user_date).val(formattedDate.split("-").reverse().join("-"))
-                                                                                            // $(user_date).val(grn_rows[p].F43121_URDT)
-
-                                                                                            if(+grn_rows[p].F43121_MATC == 4)
-                                                                                            {
-                                                                                                $(user_date).parent().parent().children().children().css("color" , "red")
-
-                                                                                            }
-
-                                    
-                                                                                        }
-
-
-                                                                                        d = grn_rows.length == 1 ? 0 : 2;
-
-                                                                                        console.log(grn_rows.length);
-
+                                po_check.push(po_number);
+        
+                                details.push({po_number,po_type,company_code,currency,total,amount})
+                                // checked();
+        
+                                // let business_unit = 101;
+        
+                                
+                               
+                                
+                                
+                                 let reciept_number;
+                                //  let vendorname = "QWERTY"
+                                 
+                                 let gate_number = $("#gate_number").html()
+                                
+                                
+                                
+                                
+                                 
+        
+        
+                                grn_head.push({vehicle_nbr,material_type,vendorname,weight,division,remark,in_time,gate_number,po_number,po_type,business_unit,billto_name,billto_address1,billto_gstin,billto_city,billto_state,billto_zipcode,shipto_name,shipto_address1,shipto_gstin,shipto_city,shipto_state,shipto_zipcode,lr_no,lr_date,contract_no,contract_date,reciept_details})
+        
+                                
+        
+                                                                
+                            }
+        
+        
+                           
+        
+                            // vendorname = "ravi"
+        
+                            let gate_number = $("#gate_number").html()
+        
+                            let status = {code : 200}
+        
+                            company_code = $("#company_code").val()
+                            // doc_company = $("#doc_company").val()
+                            business_unit = $("#business_unit").val()
+                            state = $("#state").val()
+                            invoice_number = $("#invoice_no").val()
+                            invoice_date = $("#invoice_date").val().split("-").reverse().join("-")
+                            invoice_type = $("#invoice_type").val()
+                            currency_code = $("#curr_code").val()
+                            supplier_gstin = $("#supplier_gstin").val()
+                            tds_code = $("#tds_code").val()
+                            vendor_code = $("#vendor_code").val()
+                            vendorname = $("#vendor_name").val()
+                            physical_doc = $("#physical_doc_rec").val()
+                            source = $("#source").val()
+                            amount = $("#amount").val()
+                            GL_date = $("#gl_date").val().split("-").reverse().join("-")
+        
+                            billto_name = $("#billto_name").val() 
+                            billto_address1 = $("#billto_address1").val() 
+                            billto_gstin = $("#billto_gstin").val() 
+                            billto_city = $("#billto_city").val() 
+                            billto_state = $("#billto_state").val() 
+                            billto_zipcode = $("#billto_zipcode").val() 
+                            shipto_name = $("#shipto_name").val() 
+                            shipto_address1 = $("#shipto_address1").val() 
+                            shipto_gstin = $("#shipto_gstin").val() 
+                            shipto_city = $("#shipto_city").val() 
+                            shipto_state = $("#shipto_state").val() 
+                            shipto_zipcode = $("#shipto_zipcode").val()
+                            lr_no = $("#lr_no").val()
+                            lr_date = $("#lr_date").val()
+                            contract_no = $("#contract_no").val()
+                            contract_date = $("#contract_date").val()
+        
+        
+                            // company_code,doc_company,business_unit,state,invoice_no,invoice_date,invoice_type,currency_code,supplier_gstin,tds_code,vendor_code,vendor_name,physical_doc,source,amount,gl_date
+                            
+        
+                            entity.push({company_code,doc_company,business_unit,state,invoice_number,invoice_date,invoice_type,currency_code,supplier_gstin,tds_code,vendor_code,vendorname,physical_doc,source,amount,GL_date,gate_number,vendorname,vehicle_nbr,material_type,weight,in_time,division,remark,status,billto_name,billto_address1,billto_gstin,billto_city,billto_state,billto_zipcode,shipto_name,shipto_address1,shipto_gstin,shipto_city,shipto_state,shipto_zipcode,lr_no,lr_date,contract_no,contract_date})
+        
+                            console.log("entity : " , entity);
+        
+                        // })
+        
+                        var d = 2;
+        
+        
+                        let tab_logicc_rows = $("#table-body tr").length
+        
+                        $.ajax({
+                            url : `${[login[0].url]}/jderest/v2/dataservice/table/F43121?$field=F43121.AN8&$field=F43121.CNID&$filter=F43121.MATC EQ 1&$filter=F43121.AN8 EQ ${$("#vendor_code").val()}&$filter=F43121.CNID EQ ${$("#invoice_noo_entry").val()}&$filter=F43121.TRDJ GE 01042024`,
+                            headers: {
+                                "Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
+                            },
+                            success : function(res_daata,status,xhr)
+                            {
+        
+                                if(res_daata.fs_DATABROWSE_F43121.data.gridData.summary.records > 0)
+                                {
+        
+                                    $.errorMessage(`Duplicate Supplier Invoice`)
+        
+                                    $("#loader4").removeClass("sk-loading")
+                                    $("#loader4").removeClass("ibox-content")
+                                    $("#spin4").addClass("d-none")
+        
+                                }
+                                else{
+        
+                                    // let grids_data = [];
+        
+                                    let row_obj_data = [];
+        
+        
+                                    for(let k = 0 ; k < tab_logicc_rows && shouldBreak ; k++){
+        
+                                        let grids_data = [];
+                                        
+                                        if($(".accept_quantity")[k].value != ""){
+        
+                                            grids_data.push({
+                                                "location": $(".Location")[k].value,
+                                                "item_number" : $(".po_item")[k].value,
+                                                "quantity": $(".accept_quantity")[k].value,
+                                            })
+        
+                                        }
+        
+                                        let date = obj.createdAt.split("-").join("/");
+        
+                                        let row_obj = {};
+        
+                                            let version;
+        
+                                            if(obj.transactionType == "ST/OT")
+                                            {
+                                                version  = "RSB001"
+                                            }
+                                            else{
+                                                version = "IAL000002"
+                                            }
+                                                
+                                                row_obj = {
+                                                        supplier_number: $("#vendor_code").val(),
+                                                        line_number: $(".line_numm")[k].value,
+                                                        order_number : $(".onee")[k].value,
+                                                        order_type : $(".po_type")[k].value,
+                                                        order_company : $(".detail_company_code")[k].value,
+                                                        branch_plant : $(".business_detail")[0].value.replace(/ /g,''),
+                                                        location_data : grids_data,
+                                                        supplier_invoice_number: $("#invoice_noo_entry").val(),
+                                                        supplier_invoice_date: $("#invoice_date").val().split("-").join("/"),
+                                                        gate_entry_number: obj.gate_number,
+                                                        gate_entry_date: date,
+                                                        P4312_Version: version,
+                                                        road_permit_number: $("#road_permit_number").val(),
+                                                        gl_date: $("#gl_date").val().split("-").join("/"),
+                                                }
+                                            
+                                            
+        
+        
+                                            row_obj_data.push(row_obj)
+                                            
+                                        
+                                        
+        
+                                    }
+        
+                                        console.log("row_obj " , row_obj_data);
+        
+        
+        
+        
+                                    // for(let k = 0 ; k < tab_logicc_rows ; k++){
+        
+        
+                                    //     grids_data.push({
+                                    //         row_number_for_update: $(".line_numm")[k].value,
+                                    //         road_permit_number: $("#road_permit_number").val(),
+                                    //         quantity: $(".accept_quantity")[k].value,
+                                    //         rec_opt: "1"
+                                    //         })
+                                    // }
+        
+                                    //     let date = obj.createdAt.split("-").join("/");
+        
+                                    //     let row_obj = {};
+        
+        
+                                    //         row_obj = {
+        
+                                    //             boe_number : $("#boe_number").val(),
+                                    //             port_code : $("#port_code").val(),
+                                    //             order_number : $(".onee")[0].value,
+                                    //             order_type : $(".po_type")[0].value,
+                                    //             order_company : $("#company_code").val(),
+                                    //             branch_plant : $(".business_detail")[0].value.replace(/ /g,''),
+                                    //             supplier_invoice_number: $("#invoice_noo_entry").val(),
+                                    //             supplier_invoice_date: $("#invoice_date").val().split("-").reverse().join("/"),
+                                    //             gate_entry_number: obj.gate_number,
+                                    //             gate_entry_date: date,
+                                    //             P4312_Version: "IAL000002",
+                                    //             gl_date: $("#gl_date").val().split("-").reverse().join("/"),
+                                    //             grid_data: grids_data
+                                    //             }
+        
+        
+                                    //             row_obj_data.push(row_obj)
+                                            
+                                        
+                                        
+        
+                                    //     console.log("row_obj " , row_obj_data);
+        
+                                        
+        
+        
+                                                            if($("#Diffrence").val() <= 1 && $("#Diffrence").val() > -1)
+                                                            {
+        
+                                                                console.log('url   ---->' ,`${[test[0].url]}/gate/grn`);
+                                
+                                                            $.ajax({
+                                                                url: `${[test[0].url]}/gate/grn`,
+                                                                type : 'POST',
+                                                                data : JSON.stringify(row_obj_data),
+                                                                headers: {
+                                                                    'Accept': 'application/json',
+                                                                    'Content-Type': 'application/json',
+                                                                    'Authorization': 'Bearer ' + token,
+                                                                },
+                                                                    success: function(data,status,xhr){
+        
+                                                                        console.log(data);
+        
+                                                                        console.log("success : ",xhr);
+        
+                                                                        if(data.status == 200)
+                                                                        {
+        
+                                                                            // console.log(data);
                                                                     
-                                                                                    }
-                                                                                
-                                                                                },
-                                                                                complete : ()=>{
-
-
-
-
-                                                                                    let today = new Date();
-                                                                                    let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-");
-                                                                                    let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');                  
-
-                                                                                    // console.log("data saved", data);
-
+                                                                            receipt_number_details = data.data;
+                                                                            console.log("receipt number :" ,receipt_number_details);
+                                                                            obj.receipt_number = data.data;
+        
+                                                                            grn_done = true;
+        
+                                        
                                                                                     $.ajax({
-                                                                                        url : `${[test[0].url]}/remark/add`,
-                                                                                        type : 'POST',
-                                                                                        data : JSON.stringify({
-                                            
-                                                                                            gate_number: $("#gate_number").html(),
-                                                                                            remark : "SUCCESSFULLY GRN CREATED",
-                                                                                            status  : 200,
-                                                                                            username  : $(".name")[1].innerText,
-                                                                                            timestamp : `${date} ${time}` 
-                                                                                        }),
-                                                                                        headers: {
+                                                                                    url: `${[login[0].url]}/jderest/v2/dataservice/table/F43121?$field=F43121.DOC&$field=F43121.DCT&$field=F43121.UREC&$field=F43121.LOCN&$field=F43121.GLC&$field=F43121.URDT&$field=F43121.AOPN&$field=F43121.DOCO&$field=F43121.LITM&$field=F43121.MCU&$filter=F43121.MATC EQ 1&$filter=F43121.MCU EQ ${$("#business_unit").val()}&$filter=F43121.DOCO EQ ${$("#purchase_order").val()}&$filter=F43121.DCTO EQ ${$("#purchase_type").val()}&$filter=F43121.CNID EQ ${$("#invoice_noo_entry").val()}&$filter=F43121.DCT EQ OV&$field=F43121.AREC&$field=F43121.VRMK&$field=F43121.CNID`,
+                                                                                    headers: {
                                                                                             'Accept': 'application/json',
-                                                                                            'Content-Type': 'application/json',
-                                                                                            'Authorization': 'Bearer ' + token,
+                                                                                            'Content-Type':'application/json',
+                                                                                            "Authorization": "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`)
                                                                                         },
-                                                                                        success : function(data,status,xhr)
-                                                                                        {
-                                            
-                                                                                        }
-                                                                                    })
-
-
-                                                                                    
-                                                                                    
-
-                                                                                    // obj.status = {code : 200};
-                                                                                    // obj.roadPermitNumber = $("#road_permit_number").val()
-                                                                                    // // obj.receipt_number = receipt_number_details;
-                                                                                    // obj.company_code = $("#company_code").val()
-                                                                                    // obj.business_unit = $("#business_unit").val()
-                                                                                    // obj.state = $("#state").val()
-                                                                                    // obj.invoice_number = $("#invoice_noo_entry").val()
-                                                                                    // obj.invoice_date = $("#invoice_date").val()
-                                                                                    // obj.invoice_type = $("#invoice_type").val()
-                                                                                    // obj.currency_code = $("#curr_code").val()
-                                                                                    // obj.supplier_gstin = $("#supplier_gstin").val()
-                                                                                    // obj.tds_code = $("#tds_code").val()
-                                                                                    // obj.vendor_code = $("#vendor_code").val()
-                                                                                    // obj.vendorname = $("#vendor_name").val()
-                                                                                    // obj.physical_doc = $("#physical_doc_rec").val()
-                                                                                    // obj.source = $("#source").val()
-                                                                                    // obj.amount = $("#amount").val()
-                                                                                    // obj.gl_date = $("#gl_date").val()
-                                                                                    // obj.tax_difference = $("#Diffrence").val()
-                                                                                    // obj.tax_total_amount = $("#Total_Amount").val()
-                                                                                    // obj.dc_type = $("#dc_number_type").val()
-                                                                                    // obj.port = $("#port_code").val()
-                                                                                    // obj.boe = $("#boe_number").val()
-
-                                                                                    // // console.log(" success - obj : " ,JSON.stringify(obj));
-
-
-                                                                                    
-
-                                                                                    //     $.ajax({
-                                                                                    //         url : `${[test[0].url]}/gate/put?id=${Gate_no}`,
-                                                                                    //         type : 'PUT',
-                                                                                    //         data : JSON.stringify(obj),
-                                                                                    //         headers: {
-                                                                                    //             'Accept': 'application/json',
-                                                                                    //             'Content-Type': 'application/json',
-                                                                                    //             'Authorization': 'Bearer ' + token,
-                                                                                    //         },
-                                                                                    //         success : (data,status,xhr)=>{
-                                
-                                                                                    //             if(xhr.status == 200)
-                                                                                    //             {
-
-                                                                                                    
-                                                                                    //                 // alert("done")
-                                                                                    //             }
-                                                                                    //             else{
-
-                                                                                    //                     $.errorMessage(xhr.responseJSON.message);
-                                                                                    //             }
+                                        
+                                                                                        success: function(data){
+        
+                                                                                            $("#reject_invoice").addClass("invisible")
+        
+                                                                                            $("#data_list").removeClass("invisible");
+                                                                                            $("#data1").trigger("click")
+        
+                                                                                            console.log("grn data : ", data);
+                                                                                            // let grn_len = $("#grn_table tr").length - 2
+                                                                                            let grn_rows = data.fs_DATABROWSE_F43121.data.gridData.rowset
                                                                                             
-                                                                                    //         },
-                                                                                    //         error : (xhr)=>{
-                                                                                    //             if(xhr.status == 498)
-                                                                                    //             {
-                                                                                    //                 $.tokenError();
-                                                                                    //             }
-                                                                                    //             else if(xhr.status >= 400 && xhr.status < 500){
-
-                                                                                    //                     $.errorMessage(xhr.responseJSON.message);
-                                                                                    //             }
-                                                                                    //             else{
-                                                                                    //                     $.errorMessage(xhr.responseJSON.error)
-                                                                                    //             }
-                                                                                    //         }
-                                                                                    //     })
-                                                                                    // }
-
-                                                                                    
-                                                                                        $("#create_grn").addClass("invisible")
-                                                                                        $(".fetch_check").attr("readonly" , "readonly")
+                                                                                            let table_rows = $("#grn_table tr").length - 2;
+                                                                                            
+                                                                                            let valid_data = $(".order_no")[0]
+        
+                                                                                            for(let j = 0 ; j < (table_rows == 0 && $(valid_data).val() == "" ? grn_rows.length -1 : grn_rows.length); j++)
+                                                                                            {
+                                                                                                $("#grn_row").trigger("click");
+                                                                                            }
+                                                                                            
+                                                                                            for(let i = (table_rows == 0 ? table_rows : table_rows + 1) , p = 0 ; i < (table_rows == 0  ? table_rows + grn_rows.length  : (table_rows + 1) + grn_rows.length) ; i++ , p++)
+                                                                                            {
+                                                                                            
+                                                                                                if($(valid_data).val() != "" && table_rows == 0 && d == 0){
+        
+                                                                                                // console.log(`inside if  ${data.po_details.length}   ${i+1}`);
+        
+                                                                                                console.log(grn_rows[p].F43121_DOCO)
+        
+                                                                                                
+                                                                                                for(let s = 0 ; s < grn_rows.length ; s++)
+                                                                                                {
+                                                                                                        
+                                                                                                    let order_no = $(".document_no")[s+1]
+                                                                                                    let item_no = $(".do_ty")[s+1]
+                                                                                                    let business_unit_grn = $(".business_unit_grn")[s+1]
+                                                                                                    let document_no = $(".item_no")[s+1]
+                                                                                                    let invoice_no_grn = $(".invoice_no_grn")[s+1]
+                                                                                                    let do_ty = $(".quantity_recieved")[s+1]
+                                                                                                    let quantity_recieved = $(".order_no")[s+1]
+                                                                                                    let amount_open = $(".amount_open")[s+1]
+                                                                                                    let location = $(".location")[s+1]
+                                                                                                    let user_date = $(".user_date")[s+1]
+                                                                                                    let glc = $(".glc")[s+1]
+                                                                
+                                                                
+                                                                                                    $(order_no).val(grn_rows[s].F43121_DOC)
+                                                                                                    $(item_no).val(grn_rows[s].F43121_DCT)
+                                                                                                    $(business_unit_grn).val(grn_rows[s].F43121_MCU.replace(/ /g,''))
+                                                                                                    $(document_no).val(grn_rows[s].F43121_LITM)
+                                                                                                    $(invoice_no_grn).val(grn_rows[s].F43121_CNID)
+                                                                                                    $(do_ty).val(grn_rows[s].F43121_UREC)
+                                                                                                    $(quantity_recieved).val(grn_rows[s].F43121_VRMK.replace(/ /g,''))
+                                                                                                    $(amount_open).val(grn_rows[s].F43121_AREC)
+                                                                                                    $(location).val(grn_rows[s].F43121_LOCN)
+                                                                                                    let inputDate = grn_rows[s].F43121_URDT;
+                                                                                                    $(glc).val(grn_rows[s].F43121_GLC);
+                                                                                                    let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
+                                                                                                    $(user_date).val(formattedDate.split("-").reverse().join("-"))
+                                                                                                    // $(user_date).val(grn_rows[s].F43121_URDT)
+        
+                                                                                                    if(+grn_rows[s].F43121_MATC == 4)
+                                                                                                    {
+                                                                                                        // $(user_date).parent().parent().css("background-color" , "red")
+                                                                                                        $(user_date).parent().parent().children().children().css("color" , "red")
+        
+                                                                                                    }
+                                                                                                            
+                                                                                                        }
+        
+                                                                                                        break;
+                                                                                                }
+        
+                                                                                                else{
+        
+                                                                                                    
+                                                                                                    let order_no = $(".document_no")[i]
+                                                                                                    let item_no = $(".do_ty")[i]
+                                                                                                    let business_unit_grn = $(".business_unit_grn")[i]
+                                                                                                    let document_no = $(".item_no")[i]
+                                                                                                    let invoice_no_grn = $(".invoice_no_grn")[i]
+                                                                                                    let do_ty = $(".quantity_recieved")[i]
+                                                                                                    let quantity_recieved = $(".order_no")[i]
+                                                                                                    let amount_open = $(".amount_open")[i]
+                                                                                                    let location = $(".location")[i]
+                                                                                                    let user_date = $(".user_date")[i]
+                                                                                                    let glc = $(".glc")[i]
+                                                                                                    
+                                                                                                    
+                                                                                                    $(order_no).val(grn_rows[p].F43121_DOC)
+                                                                                                    $(item_no).val(grn_rows[p].F43121_DCT)
+                                                                                                    $(business_unit_grn).val(grn_rows[p].F43121_MCU.replace(/ /g,''))
+                                                                                                    $(document_no).val(grn_rows[p].F43121_LITM)
+                                                                                                    $(invoice_no_grn).val(grn_rows[p].F43121_CNID)
+                                                                                                    $(do_ty).val(grn_rows[p].F43121_UREC)
+                                                                                                    $(quantity_recieved).val(grn_rows[p].F43121_VRMK.replace(/ /g,''))
+                                                                                                    $(amount_open).val(grn_rows[p].F43121_AREC)
+                                                                                                    $(location).val(grn_rows[p].F43121_LOCN)
+                                                                                                    let inputDate = grn_rows[p].F43121_URDT;
+                                                                                                    $(glc).val(grn_rows[p].F43121_GLC);
+                                                                                                    let formattedDate = `${inputDate.substr(0, 4)}-${inputDate.substr(4, 2)}-${inputDate.substr(6, 2)}`
+                                                                                                    $(user_date).val(formattedDate.split("-").reverse().join("-"))
+                                                                                                    // $(user_date).val(grn_rows[p].F43121_URDT)
+        
+                                                                                                    if(+grn_rows[p].F43121_MATC == 4)
+                                                                                                    {
+                                                                                                        $(user_date).parent().parent().children().children().css("color" , "red")
+        
+                                                                                                    }
+        
+                                            
+                                                                                                }
+        
+        
+                                                                                                d = grn_rows.length == 1 ? 0 : 2;
+        
+                                                                                                console.log(grn_rows.length);
+        
+                                                                            
+                                                                                            }
                                                                                         
+                                                                                        },
+                                                                                        complete : ()=>{
+        
+                                                                                            
+                                                                                            
+                                                                                                let today_date = new Date();
+                                                                                                let date_today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                                                                                                let Curr_time = String(today_date.getHours()).padStart(2, '0')+':'+String(today_date.getMinutes()).padStart(2, '0')+':'+String(today_date.getSeconds()).padStart(2, '0');
 
-                                                                                        $("#purchase_order").attr("readonly" , "readonly")
-                                                                                        $("#purchase_type").attr("readonly" , "readonly")
-                                                                                        $(".details_statuss").attr("readonly", "readonly")
-                                                                                        $(".accept_quantity").attr("readonly", "readonly")
-                                                                                    
+                                                                                                // console.log(date +"  "+time );
 
-                                                                                        window.location.reload();
+                                                                                                $.ajax({
+                                                                                                    url : `${[test[0].url]}/remark/add`,
+                                                                                                    type : 'POST',
+                                                                                                    data : JSON.stringify({
 
-                                                                                   
+                                                                                                        gate_number: $("#gate_number").html(),
+                                                                                                        remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
+                                                                                                        status  : 200,
+                                                                                                        username  : $(".name")[1].innerText,
+                                                                                                        timestamp : `${date_today} ${Curr_time}` 
+                                                                                                    }),
+                                                                                                    headers: {
+                                                                                                        'Accept': 'application/json',
+                                                                                                        'Content-Type': 'application/json',
+                                                                                                        'Authorization': 'Bearer ' + token,
+                                                                                                    },
+                                                                                                    success : function(data,status,xhr)
+                                                                                                    {
+                                                                                                    console.log("remarks data :" ,data);
+                                                                                                    let today = new Date();
+                                                                                                    let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-");
+                                                                                                    let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');                  
+
+                                                                                                    // console.log("data saved", data);
+
+                                                                                                    $.ajax({
+                                                                                                        url : `${[test[0].url]}/remark/add`,
+                                                                                                        type : 'POST',
+                                                                                                        data : JSON.stringify({
+
+                                                                                                            gate_number: $("#gate_number").html(),
+                                                                                                            remark : "SUCCESSFULLY GRN CREATED",
+                                                                                                            status  : 200,
+                                                                                                            username  : $(".name")[1].innerText,
+                                                                                                            timestamp : `${date} ${time}` 
+                                                                                                        }),
+                                                                                                        headers: {
+                                                                                                            'Accept': 'application/json',
+                                                                                                            'Content-Type': 'application/json',
+                                                                                                            'Authorization': 'Bearer ' + token,
+                                                                                                        },
+                                                                                                        success : function(data,status,xhr)
+                                                                                                        {
+                                                                                                            window.location.reload();
+                                                                                                        }
+                                                                                                    })
+                                                                                                    }
+                                                                                                })
+        
+        
+                                                                                 
+        
+        
+                                                                                            
+                                                                                            
+        
+                                                                                            // obj.status = {code : 200};
+                                                                                            // obj.roadPermitNumber = $("#road_permit_number").val()
+                                                                                            // // obj.receipt_number = receipt_number_details;
+                                                                                            // obj.company_code = $("#company_code").val()
+                                                                                            // obj.business_unit = $("#business_unit").val()
+                                                                                            // obj.state = $("#state").val()
+                                                                                            // obj.invoice_number = $("#invoice_noo_entry").val()
+                                                                                            // obj.invoice_date = $("#invoice_date").val()
+                                                                                            // obj.invoice_type = $("#invoice_type").val()
+                                                                                            // obj.currency_code = $("#curr_code").val()
+                                                                                            // obj.supplier_gstin = $("#supplier_gstin").val()
+                                                                                            // obj.tds_code = $("#tds_code").val()
+                                                                                            // obj.vendor_code = $("#vendor_code").val()
+                                                                                            // obj.vendorname = $("#vendor_name").val()
+                                                                                            // obj.physical_doc = $("#physical_doc_rec").val()
+                                                                                            // obj.source = $("#source").val()
+                                                                                            // obj.amount = $("#amount").val()
+                                                                                            // obj.gl_date = $("#gl_date").val()
+                                                                                            // obj.tax_difference = $("#Diffrence").val()
+                                                                                            // obj.tax_total_amount = $("#Total_Amount").val()
+                                                                                            // obj.dc_type = $("#dc_number_type").val()
+                                                                                            // obj.port = $("#port_code").val()
+                                                                                            // obj.boe = $("#boe_number").val()
+        
+                                                                                            // // console.log(" success - obj : " ,JSON.stringify(obj));
+        
+        
+                                                                                            
+        
+                                                                                            //     $.ajax({
+                                                                                            //         url : `${[test[0].url]}/gate/put?id=${Gate_no}`,
+                                                                                            //         type : 'PUT',
+                                                                                            //         data : JSON.stringify(obj),
+                                                                                            //         headers: {
+                                                                                            //             'Accept': 'application/json',
+                                                                                            //             'Content-Type': 'application/json',
+                                                                                            //             'Authorization': 'Bearer ' + token,
+                                                                                            //         },
+                                                                                            //         success : (data,status,xhr)=>{
+                                        
+                                                                                            //             if(xhr.status == 200)
+                                                                                            //             {
+        
+                                                                                                            
+                                                                                            //                 // alert("done")
+                                                                                            //             }
+                                                                                            //             else{
+        
+                                                                                            //                     $.errorMessage(xhr.responseJSON.message);
+                                                                                            //             }
+                                                                                                    
+                                                                                            //         },
+                                                                                            //         error : (xhr)=>{
+                                                                                            //             if(xhr.status == 498)
+                                                                                            //             {
+                                                                                            //                 $.tokenError();
+                                                                                            //             }
+                                                                                            //             else if(xhr.status >= 400 && xhr.status < 500){
+        
+                                                                                            //                     $.errorMessage(xhr.responseJSON.message);
+                                                                                            //             }
+                                                                                            //             else{
+                                                                                            //                     $.errorMessage(xhr.responseJSON.error)
+                                                                                            //             }
+                                                                                            //         }
+                                                                                            //     })
+                                                                                            // }
+        
+                                                                                            
+                                                                                                $("#create_grn").addClass("invisible")
+                                                                                                $(".fetch_check").attr("readonly" , "readonly")
+                                                                                                
+        
+                                                                                                $("#purchase_order").attr("readonly" , "readonly")
+                                                                                                $("#purchase_type").attr("readonly" , "readonly")
+                                                                                                $(".details_statuss").attr("readonly", "readonly")
+                                                                                                $(".accept_quantity").attr("readonly", "readonly")
+                                                                                            
+        
+                                                                                                window.location.reload();
+        
+                                                                                           
+                                                                                                $("#loader4").removeClass("sk-loading")
+                                                                                                $("#loader4").removeClass("ibox-content")
+                                                                                                $("#spin4").addClass("d-none")
+        
+        
+        
+                                                                                            $("#calculate_diffrence").addClass("invisible")
+                                                                                            $("#Modal_details").addClass("invisible")
+        
+                                                                                        },
+                                                                                        error: function(xhr){
+                                                                                            console.log(xhr);
+                                                                                                // po_check = [];
+                                                                                                // reciept_no = []
+        
                                                                                         $("#loader4").removeClass("sk-loading")
                                                                                         $("#loader4").removeClass("ibox-content")
                                                                                         $("#spin4").addClass("d-none")
-
-
-
-                                                                                    $("#calculate_diffrence").addClass("invisible")
-                                                                                    $("#Modal_details").addClass("invisible")
-
-                                                                                },
-                                                                                error: function(xhr){
-                                                                                    console.log(xhr);
-                                                                                        // po_check = [];
-                                                                                        // reciept_no = []
-
+                                                                                            
+        
+                                                                                        }
+                                                                                    
+                                                                                })
+        
+                                                                        }
+                                                                        else{
+        
+                                                                        let messages = data.data.map((value)=> value).join(" | ")
+        
+                                                                        console.log("jde message :" ,messages);
+        
+                                                                            $.errorMessage(`${messages}`)
+                     
                                                                                 $("#loader4").removeClass("sk-loading")
                                                                                 $("#loader4").removeClass("ibox-content")
                                                                                 $("#spin4").addClass("d-none")
-                                                                                    
-
-                                                                                }
-                                                                            
-                                                                        })
-
-                                                                }
-                                                                else{
-
-                                                                let messages = data.data.map((value)=> value).join(" | ")
-
-                                                                console.log("jde message :" ,messages);
-
-                                                                    $.errorMessage(`${messages}`)
-             
-                                                                        $("#loader4").removeClass("sk-loading")
-                                                                        $("#loader4").removeClass("ibox-content")
-                                                                        $("#spin4").addClass("d-none")
-
-                                                                }
-                            
-                                                            },
-                            
-                                                            error: function(xhr){
-
-                                                                console.log(xhr);
-                                                                if(xhr.status == 498)
-                                                                {
-                                                                    $.tokenError();
-                                                                }
-                                                                else{
-
-                                                                    const swalWithBootstrapButtons = Swal.mixin({
-                                                                        customClass: {
-                                                                            confirmButton: 'btn btn-sm btn-secondary mx-1',
-                                                                        },
-                                                                        buttonsStyling: false
-                                                                    })
-    
-                                                                    console.log(xhr.responseJSON.message);
-    
-                                                                    swalWithBootstrapButtons.fire({
-                                                                        // title: 'Are you sure?',
-                                                                        text: `${xhr.responseJSON.message}`,
-                                                                        icon: 'error',
-                                                                        confirmButtonText: 'OK',
-                                                                        reverseButtons: true
-                                                                    })
-                                
-                                                                    $("#loader4").removeClass("sk-loading")
-                                                                    $("#loader4").removeClass("ibox-content")
-                                                                    $("#spin4").addClass("d-none")
-                                                                }
-
-                                                            
-                            
-                                                            },
-                            
-                                                        })
-
-                                                    }
-                                                    else{
-
-                                                        $.errorMessage(`Total Invoice Amount with PO Not Matching`)
-
-                                                        $("#loader4").removeClass("sk-loading")
-                                                        $("#loader4").removeClass("ibox-content")
-                                                        $("#spin4").addClass("d-none")
-
-                                                    }
-
-
-
-                                
-                            }
+        
+                                                                        }
+                                    
+                                                                    },
+                                    
+                                                                    error: function(xhr){
+        
+                                                                        console.log(xhr);
+                                                                        if(xhr.status == 498)
+                                                                        {
+                                                                            $.tokenError();
+                                                                        }
+                                                                        else{
+        
+                                                                            const swalWithBootstrapButtons = Swal.mixin({
+                                                                                customClass: {
+                                                                                    confirmButton: 'btn btn-sm btn-secondary mx-1',
+                                                                                },
+                                                                                buttonsStyling: false
+                                                                            })
+            
+                                                                            console.log(xhr.responseJSON.message);
+            
+                                                                            swalWithBootstrapButtons.fire({
+                                                                                // title: 'Are you sure?',
+                                                                                text: `${xhr.responseJSON.message}`,
+                                                                                icon: 'error',
+                                                                                confirmButtonText: 'OK',
+                                                                                reverseButtons: true
+                                                                            })
+                                        
+                                                                            $("#loader4").removeClass("sk-loading")
+                                                                            $("#loader4").removeClass("ibox-content")
+                                                                            $("#spin4").addClass("d-none")
+                                                                        }
+        
+                                                                    
+                                    
+                                                                    },
+                                    
+                                                                })
+        
+                                                            }
+                                                            else{
+        
+                                                                $.errorMessage(`Total Invoice Amount with PO Not Matching`)
+        
+                                                                $("#loader4").removeClass("sk-loading")
+                                                                $("#loader4").removeClass("ibox-content")
+                                                                $("#spin4").addClass("d-none")
+        
+                                                            }
+        
+        
+        
+                                        
+                                    }
+                                }
+                            })
+        
+        
+        
+                        }else{
+        
+                            $("#loader4").removeClass("sk-loading")
+                            $("#loader4").removeClass("ibox-content")
+                            $("#spin4").addClass("d-none")
+        
                         }
-                    })
+        
+                      
+                      
+
+                
+                
 
 
+                  }
+                  else if(result.isDismissed){
 
-                }else{
+                    $("#reMap").trigger("click");
+                    }
+                  else {
 
-                    $("#loader4").removeClass("sk-loading")
-                    $("#loader4").removeClass("ibox-content")
-                    $("#spin4").addClass("d-none")
-
-                }
-
+                    console.log('value of result  ---->' ,result);
+                 }
+               });
         
 
 

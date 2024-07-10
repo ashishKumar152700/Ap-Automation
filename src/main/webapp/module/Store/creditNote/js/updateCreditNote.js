@@ -3105,7 +3105,42 @@ $.ajax ({
 
 
             $("#create_grn").click((e)=>{
+                
+                window.scrollTo({
+                    top:  70,
+                    behavior: 'smooth'
+                  });
 
+
+                  const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                      icon: 'my-swal-icon',
+                      confirmButton: "btn btn-sm btn-success mx-1",
+                      cancelButton: "btn btn-sm btn-info mx-1",
+                      denyButton : "btn btn-sm btn-danger mx-1",
+                    },
+                    buttonsStyling: false,
+                  });
+              
+                  swalWithBootstrapButtons
+                    .fire({
+                      position: "top",
+                      // title: "Please Re-Check The Below Details",
+                      html: `<b>Re-Check The Below Details<br>Invoice Number :- ${$("#invoice_number").val()}<br>Invoice Date :- ${$("#invoice_date").val()}</b>`,
+                      // text: `Invoice Number :- ${$("#invoice_number").val()}\n\nInvoice Date :- ${$("#invoice_date").val()}`,
+                      icon: "warning",
+                      showCancelButton: true,
+                      showDenyButton: true,
+                      confirmButtonText: "OK",
+                      cancelButtonText: "Re-Map",
+                      denyButtonText: "Back",
+                      // reverseButtons: true,
+                    })
+                    .then(async(result) => {
+                      if (result.isConfirmed) {
+
+                        
+                        
                 $("#loader4").addClass("sk-loading")
                 $("#loader4").addClass("ibox-content")
                 $("#spin4").removeClass("d-none")
@@ -3594,25 +3629,23 @@ $.ajax ({
                                                                                 },
                                                                                 complete : ()=>{
 
+                                                                                    
+                                                                                    let today_date = new Date();
+                                                                                    let date_today = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-")
+                                                                                    let Curr_time = String(today_date.getHours()).padStart(2, '0')+':'+String(today_date.getMinutes()).padStart(2, '0')+':'+String(today_date.getSeconds()).padStart(2, '0');
 
-
-
-                                                                                    let today = new Date();
-                                                                                    let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-");
-                                                                                    let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');                  
-
-                                                                                    // console.log("data saved", data);
+                                                                                    // console.log(date +"  "+time );
 
                                                                                     $.ajax({
                                                                                         url : `${[test[0].url]}/remark/add`,
                                                                                         type : 'POST',
                                                                                         data : JSON.stringify({
-                                            
+
                                                                                             gate_number: $("#gate_number").html(),
-                                                                                            remark : "SUCCESSFULLY GRN CREATED",
+                                                                                            remark : "INVOICE NUMNER AND INVOICE DATE CHECKED FOUND OK",
                                                                                             status  : 200,
                                                                                             username  : $(".name")[1].innerText,
-                                                                                            timestamp : `${date} ${time}` 
+                                                                                            timestamp : `${date_today} ${Curr_time}` 
                                                                                         }),
                                                                                         headers: {
                                                                                             'Accept': 'application/json',
@@ -3621,10 +3654,40 @@ $.ajax ({
                                                                                         },
                                                                                         success : function(data,status,xhr)
                                                                                         {
-                                            
+                                                                                        console.log("remarks data :" ,data);
+                                                                                        let today = new Date();
+                                                                                        let date = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: 'numeric' }).split("/").join("-");
+                                                                                        let time = String(today.getHours()).padStart(2, '0')+':'+String(today.getMinutes()).padStart(2, '0')+':'+String(today.getSeconds()).padStart(2, '0');                  
+
+                                                                                        // console.log("data saved", data);
+
+                                                                                        $.ajax({
+                                                                                            url : `${[test[0].url]}/remark/add`,
+                                                                                            type : 'POST',
+                                                                                            data : JSON.stringify({
+
+                                                                                                gate_number: $("#gate_number").html(),
+                                                                                                remark : "SUCCESSFULLY GRN CREATED",
+                                                                                                status  : 200,
+                                                                                                username  : $(".name")[1].innerText,
+                                                                                                timestamp : `${date} ${time}` 
+                                                                                            }),
+                                                                                            headers: {
+                                                                                                'Accept': 'application/json',
+                                                                                                'Content-Type': 'application/json',
+                                                                                                'Authorization': 'Bearer ' + token,
+                                                                                            },
+                                                                                            success : function(data,status,xhr)
+                                                                                            {
+                                                                                                window.location.reload();
+                                                                                            }
+                                                                                        })
+
                                                                                         }
                                                                                     })
 
+
+                                                                                
 
                                                                                     
                                                                                     
@@ -3816,6 +3879,24 @@ $.ajax ({
                     $("#spin4").addClass("d-none")
 
                 }
+                      
+                      
+                      
+
+                
+                
+
+
+                  }
+                  else if(result.isDismissed){
+
+                    $("#reMap").trigger("click");
+                    }
+                  else {
+
+                    console.log('value of result  ---->' ,result);
+                 }
+               });
 
         
 
