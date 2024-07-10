@@ -82,8 +82,8 @@
    
     <ul class="nav navbar-top-links navbar-right">
      
-      <li>
-          <input type="button" value="DB Update" class="btn btn-primary mr-3 " id="db_update">
+      <li class="d-none">
+          <input type="button" value="DB Update" class="btn btn-primary mr-3" id="db_update">
       </li>
       <li>
         <span class="m-r-sm text-muted welcome-message"> Welcome to DIGI-GRN  </span>

@@ -2590,7 +2590,7 @@ function errorStatus(objects) {
                                       else if(xhr.status >= 400 && xhr.status < 500){
                                 
                                         console.log(xhr);
-                                            $.errorMessage(xhr.responseJSON.message);
+                                            $.errorMessage(xhr.responseJSON.message);z
                                       }
                                       else{
                                 
