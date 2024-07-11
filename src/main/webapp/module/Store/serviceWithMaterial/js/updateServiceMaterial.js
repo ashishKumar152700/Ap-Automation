@@ -1689,8 +1689,8 @@ $.ajax ({
                         next = 400
                     }
 
-
-                    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&%24field=F4311.KCOO&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.PRRC&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.MCU EQ 20100&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
+                    let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
+                    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&$filter=F4311.CNDJ GE ${checkCancel}&%24field=F4311.KCOO&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.PRRC&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.MCU EQ 20100&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
                     
 
                     console.log("next : ",next);
