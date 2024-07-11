@@ -1,12 +1,10 @@
-<link rel="stylesheet" href="/ap_automation/module/Basic/css/style.css" />
-<!-- <link rel="stylesheet" href="../../../custom/dynamic-menu/style.css"> -->
+<link rel="stylesheet" href="/module/Basic/css/style.css" />
 
 <div class="modal inmodal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document" >
     <div class="modal-content">
       <div class="modal-header text-left">
           <div class="form-group row ">
-            <!-- <div class="col-1"></div> -->
             <div class="col-12 d-flex justify-content-start flex-column align-item-start">
             <label class="labelling">New Password*</label>
             <div class="input-group">
@@ -26,7 +24,6 @@
               
               <div id="errorText" class="mt-2"></div>
             </div>
-              <!-- <div class="col-1"></div> -->
             </div>
             
         <button type="button" class="close d-none" data-dismiss="modal" aria-label="Close">
@@ -77,16 +74,17 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
 
         <video id="video" autoplay loop muted>
-          <source src="/ap_automation/module/images/rsb_logo_video.mp4" type="video/mp4">
+          <source src="/module/images/rsb_logo_video.mp4" type="video/mp4">
         </video>
     </div>
+
+   
    
     <ul class="nav navbar-top-links navbar-right">
-      <!-- <li>
-        <a class="log_out">
-          <i class="fa fa-sign-out"></i> Log out
-        </a>
-      </li> -->
+     
+      <li class="d-none">
+          <input type="button" value="DB Update" class="btn btn-primary mr-3" id="db_update">
+      </li>
       <li>
         <span class="m-r-sm text-muted welcome-message"> Welcome to DIGI-GRN  </span>
     </li>
@@ -97,13 +95,7 @@
           <label for="power" class="mr-1">Logout</label>
         </a>
         <ul class="dropdown-menu dropdown-alerts">
-             <!-- <li >
-                <a  data-toggle="modal" data-target="#exampleModalCenter" >
-                    <i class="fa fa-sign-out"></i>Change Password
-                </a>
-            </li> -->
-            
-              <!-- <li class="dropdown-divider"></li> -->
+
             <li >
                 <a class="log_out">
                     <i class="fa fa-sign-out"></i> Log out
@@ -115,16 +107,18 @@
     </li>
     </ul>
   </nav>
-  <!-- <script src="../../../custom/dynamic-menu/jquery.menu.js"></script> -->
-  <script src="/ap_automation/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
-  <script src="/ap_automation/module/Configration/js/globalConfig.js"></script>
-  <script src="/ap_automation/module/Basic/js/jquery.menu.js"></script>
+  <script src="/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+  <script src="/module/Configration/js/globalConfig.js"></script>
+  <script src="/module/Basic/js/jquery.menu.js"></script>
 
   <script>
 
     var test = $.test();
     var username = JSON.parse(localStorage.getItem('username')); 
     var token = JSON.parse(localStorage.getItem('token'));
+
+
+
 
 
     $("title").html() == "DashBoard" ? $(".dropdown-alerts").prepend(`<li ><a  data-toggle="modal" data-target="#exampleModalCenter" ><i class="fa fa-sign-out"></i>Change Password</a></li>`) : "";
@@ -139,6 +133,22 @@
             //     railOpacity: 0.9,
             //     display : "block"
             // });
+
+              $("#db_update").click(()=>{
+
+                if(JSON.parse(localStorage.getItem("userrole")).includes("Admin")){
+                  console.log( " roles " ,sessionString);
+                  // alert("authorized")
+                  window.open('/module/GateEntry/DB_Update/template/gate.jsp')
+                }
+                else{
+                  $.errorMessage("You are not authorized to access this page")
+                  
+                }
+
+                
+
+              })
 
     
 
