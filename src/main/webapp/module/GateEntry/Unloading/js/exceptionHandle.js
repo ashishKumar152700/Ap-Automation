@@ -1700,11 +1700,12 @@ $("#submit_unloading").click((e) => {
                                                 }
 
                                               let line_amount = $(".unit_amount")[i].value;
+                                              let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
 
 
 
                                               $.ajax({
-                                                url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.LNID&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`,
+                                                url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.LNID&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`,
                                                 headers: { Authorization:"Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`),
                                                 },
                                                 success: function (data) {
@@ -1795,9 +1796,9 @@ $("#submit_unloading").click((e) => {
                                                           let dynamic_table_item = login[0].url == `http://103.65.20.159:8081` ? data.fs_DATABROWSE_F4104.data.gridData.rowset[0].F4104_LITM : data.fs_DATABROWSE_F56IN115.data.gridData.rowset[0].F56IN115_LITM ;
 
 
-
+                                                          let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
                                                           $.ajax({
-                                                            url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.LNID&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`,
+                                                            url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.LNID&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`,
                                                             headers: { Authorization:"Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`),
                                                             },
                                                             success: function (data,status,xhr) {

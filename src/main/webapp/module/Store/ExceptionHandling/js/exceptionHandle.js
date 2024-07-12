@@ -1661,7 +1661,7 @@ $("#po_no_selected_search").click(()=>{
   else{
     next = 400
   }
-
+  let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
 
   if($("#deliveryChallanNumber").val() != "")
   {
@@ -1669,7 +1669,7 @@ $("#po_no_selected_search").click(()=>{
       console.log(dynamic_url);
   }
   else{
-    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&%24field=F4311.KCOO&$field=F4311.UOPN&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.PRRC&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.MCU EQ 20100&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
+    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&$filter=F4311.CNDJ GE ${checkCancel}&%24field=F4311.KCOO&$field=F4311.UOPN&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.PRRC&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.MCU EQ 20100&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
   }
 
   console.log("next : ",next);
@@ -2549,11 +2549,11 @@ $("#po_no_selected_search").click(()=>{
 
                                                           console.log("item " , item);
 
-                                                          console.log(`${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$field=F4311.LNID${lineNumber}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`);
-
+                                                          console.log(`${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$field=F4311.LNID${lineNumber}&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`);
+                                                          let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
 
                                                           $.ajax({
-                                                            url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.LNID${lineNumber}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`,
+                                                            url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.LNID${lineNumber}&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC&%24field=F4311.LITM`,
                                                             headers: { Authorization:"Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`),
                                                             },
                                                             async : false, 
@@ -2647,16 +2647,17 @@ $("#po_no_selected_search").click(()=>{
 
                                                                       dynamic_table_item = login[0].url == `http://103.65.20.159:8081` ? data.fs_DATABROWSE_F4104.data.gridData.rowset[0].F4104_LITM : data.fs_DATABROWSE_F56IN115.data.gridData.rowset[0].F56IN115_LITM ;
 
-
-
+                                                                      
+                                                                      let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
                                                                       $.ajax({
-                                                                        url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$field=F4311.DSC1&$field=F4311.LNID${lineNumber}&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`,
+                                                                        url : `${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$filter=F4311.UOPN GE 1&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.DSC1&$field=F4311.LNID${lineNumber}&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`,
                                                                         headers: { Authorization:"Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`),
                                                                         },
                                                                         async : false,
                                                                         success: function (data,status,xhr) {
                                                                           console.log(data);
-                                                                          console.log(`${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$field=F4311.LNID${lineNumber}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`);
+                                                                          
+                                                                          console.log(`${[login[0].url]}/jderest/v2/dataservice/table/F4311?$field=F4311.AN8&$field=F4311.LITM&$field=F4311.LNID${lineNumber}&$filter=F4311.CNDJ GE ${checkCancel}&$field=F4311.DSC1&$filter=F4311.AN8 EQ ${$("#vendor_code").val()}&$filter=F4311.LITM EQ ${dynamic_table_item}&$filter=F4311.DOCO EQ ${$("#po_number").val()}&$filter=F4311.DCTO EQ ${$("#po_type").val()}&$filter=F4311.KCOO EQ 00201&$field=F4311.PRRC`);
                                                         
                                                         
                                                                           if(data.fs_DATABROWSE_F4311.data.gridData.summary.records > 0)
@@ -3586,9 +3587,9 @@ $("#po_no_selected_search").click(()=>{
           next = 400
         }
 
-
+        let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
     $.ajax({
-      "url": `${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&%24field=F4311.KCOO&%24field=F4311.DSC1&%24field=F4311.LNID&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.LITM&%24field=F4311.PRRC&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.AN8%20EQ%20${$("#vendor_code_modal_map").val()}${po_no_value_map}${po_type_search_map}`,
+      "url": `${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&%24field=F4311.KCOO&%24field=F4311.DSC1&$filter=F4311.CNDJ GE ${checkCancel}&%24field=F4311.LNID&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.LITM&%24field=F4311.PRRC&%24filter=F4311.NXTR%20GE%20${next}&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.AN8%20EQ%20${$("#vendor_code_modal_map").val()}${po_no_value_map}${po_type_search_map}`,
       headers: {
         Authorization: "Basic " + btoa(`${[login[0].username]}` + ":" + `${[login[0].password]}`),
       },

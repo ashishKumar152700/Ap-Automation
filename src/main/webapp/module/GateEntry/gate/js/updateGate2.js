@@ -3656,6 +3656,7 @@ $("#po_no_selected_search").click(()=>{
   let dc_number = $("#dc_number").val() != "" ? `&%24filter=F56UD911.YCHL%20EQ%20${$("#dc_number").val()}` : "" ;  
 
   let dynamic_url;
+  let checkCancel = new Date().toLocaleDateString('en-IN', { day: '2-digit', month: '2-digit', year: '2-digit' }).split("/").join("")
 
   if($("#deliveryChallanNumber").val() != "")
   {
@@ -3663,7 +3664,7 @@ $("#po_no_selected_search").click(()=>{
       console.log(dynamic_url);
   }
   else{
-    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&%24field=F4311.KCOO&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20400&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
+    dynamic_url =`${[login[0].url]}/jderest/v2/dataservice/table/F4311?%24field=F4311.DOCO&$filter=F4311.CNDJ GE ${checkCancel}&%24field=F4311.KCOO&%24field=F4311.DCTO&%24field=F4311.AN8&%24field=F4311.DSC1&%24field=F4311.LITM&%24filter=F4311.NXTR%20GE%20400&%24filter=F4311.LTTR%20NE%20980&%24filter=F4311.AOPN%20NE%200&%24filter=F4311.AN8%20EQ%20${po_vendor_code}${po_no_value}${po_type_search}`
   }
 
   
